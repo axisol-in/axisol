@@ -1,6 +1,8 @@
 // import React, { useState, useEffect } from "react";
 // import { ChevronLeft, ChevronRight, Users, MapPin, Award } from "lucide-react";
 
+import Button from "./ui/Button";
+
 const HeroSection: React.FC = () => {
   // const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -51,7 +53,8 @@ const HeroSection: React.FC = () => {
 
   return (
     <section className="w-screen h-screen">
-      {/* <div className="relative w-full h-full">
+      {
+        /* <div className="relative w-full h-full">
         {slides.map((slide, index) => (
           <div
             key={index}
@@ -107,6 +110,19 @@ const HeroSection: React.FC = () => {
         ))}
       </div>
 
+
+      */
+        <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center z-10 pointer-events-none">
+          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 drop-shadow-lg pointer-events-auto text-center">
+            Go Solar. Zero Investment. Infinite Savings.
+          </h1>
+          <div className="flex gap-10">
+            <Button title="Get Started" className="pointer-events-auto bg-white" />
+            <Button title="Get Started" className="pointer-events-auto bg-transparent text-white border border-2 hover:bg-white hover:text-black" />
+          </div>
+        </div>
+        /*
+
       <button
         onClick={prevSlide}
         className="absolute left-4 top-1/2 transform -translate-y-1/2 p-3 bg-white/20 backdrop-blur-sm rounded-full text-white hover:bg-white/30 transition-all duration-200"
@@ -130,10 +146,17 @@ const HeroSection: React.FC = () => {
             }`}
           />
         ))}
-      </div> */}
+      </div> */
+      }
 
       <div className="relative w-full h-full">
-        <video src="https://digitalassets.tesla.com/tesla-contents/video/upload/f_auto,q_auto/Solar-Panel-Hero-Desktop.mp4" autoPlay loop muted className="w-full h-full object-cover" />
+        <video
+          src="https://digitalassets.tesla.com/tesla-contents/video/upload/f_auto,q_auto/Solar-Panel-Hero-Desktop.mp4"
+          autoPlay
+          loop
+          muted
+          className="w-full h-full object-cover"
+        />
       </div>
 
       {/* Stats Bar

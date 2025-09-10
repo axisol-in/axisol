@@ -1,4 +1,5 @@
 import React from 'react';
+import { useState } from 'react';
 import { 
   Phone, 
   Mail, 
@@ -13,6 +14,22 @@ import {
 } from 'lucide-react';
 
 const ContactSection: React.FC = () => {
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
+  const [email, setEmail] = useState('');
+  const [location, setLocation] = useState('');
+  const [message, setMessage] = useState('');
+
+  const onSubmit = (event) => {
+    console.log(`{name}`)
+  }
+
+  const handleChange = (event: Event, handler: React.Dispatch<React.SetStateAction<string>>) => {
+    handler(event.target.value);
+    console.log(name)
+  }
+
+
   const teamMembers = [
     {
       name: "Rahul Sharma",
@@ -114,6 +131,7 @@ const ContactSection: React.FC = () => {
                       type="text"
                       className="w-full pl-12 pr-4 py-4 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
                       placeholder="Enter your full name"
+                      onChange={(event) => handleChange(event, setName)}
                     />
                   </div>
                 </div>
@@ -158,20 +176,6 @@ const ContactSection: React.FC = () => {
                     placeholder="City, State"
                   />
                 </div>
-              </div>
-
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  Monthly Electricity Bill (₹)
-                </label>
-                <select className="w-full px-4 py-4 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors">
-                  <option>Select your monthly bill range</option>
-                  <option>Below ₹2,000</option>
-                  <option>₹2,000 - ₹5,000</option>
-                  <option>₹5,000 - ₹10,000</option>
-                  <option>₹10,000 - ₹20,000</option>
-                  <option>Above ₹20,000</option>
-                </select>
               </div>
 
               <div>

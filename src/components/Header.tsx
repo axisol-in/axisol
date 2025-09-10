@@ -40,6 +40,12 @@ const Header: React.FC = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
+           <a
+            href="#home"
+            className="text-off-white hover:text-primary dark:hover:text-bright-orange transition-colors"
+          >
+            Home
+          </a>
           <a
             href="#about"
             className="text-off-white hover:text-primary dark:hover:text-bright-orange transition-colors"
