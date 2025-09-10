@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Menu, X, Sun, Moon, ChevronDown } from "lucide-react";
+import { NavLink } from "react-router-dom";
 import { useTheme } from "../context/ThemeContext";
 
 const Header: React.FC = () => {
@@ -8,62 +9,70 @@ const Header: React.FC = () => {
   const { isDark, toggleTheme } = useTheme();
 
   const menuItems = [
-    { name: "About Us", href: "#about" },
-    { name: "Projects", href: "#projects" },
-    { name: "Our Service Locations", href: "#locations" },
-    { name: "FAQ Chatbot", href: "#chatbot" },
-    { name: "User Stories", href: "#stories" },
-    { name: "Blogs", href: "#blogs" },
+    { name: "Home", href: "/home" },
+    { name: "Projects", href: "/projets" },
+    { name: "Blogs", href: "/blogs" },
+    { name: "About Us", href: "/about" },
+    { name: "Contact Us", href: "/contact" },
   ];
 
   return (
-    <header className="fixed top-0 w-[80%] ml-[10%] mt-5 pl-10 pr-10 z-50 dark:bg-very-dark-green/95 backdrop-blur-lg shadow-2xl transition-colors duration-300 rounded-full">
+    <header className="fixed top-0 w-[80%] ml-[10%] mt-5 pl-10 pr-10 z-50 backdrop-blur-lg shadow-2xl transition-colors duration-300 rounded-full">
       <div className="flex justify-between items-center h-16">
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="md:hidden p-2 rounded-md text-deep-navy dark:text-off-white hover:bg-light-cream dark:hover:bg-slate-blue transition-colors"
+          className="md:hidden p-2 rounded-md text-off-white hover:bg-light-cream dark:hover:bg-slate-blue transition-colors"
         >
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
 
         {/* Logo */}
-        <div className="flex items-center space-x-2">
-          <img
-            className="h-7"
-            src="https://axisol.in/wp-content/uploads/2024/12/cropped-cropped-Axisol-Logo-1-300x134.png"
-          />
-          <span className="text-2xl font-bold text-primary dark:text-bright-orange">
-            AXISOL
-          </span>
-        </div>
+        <NavLink to="/">
+          <div className="flex items-center space-x-2">
+            <img
+              className="h-7"
+              src="https://axisol.in/wp-content/uploads/2024/12/cropped-cropped-Axisol-Logo-1-300x134.png"
+            />
+            <span className="text-2xl font-bold text-primary dark:text-bright-orange">
+              AXISOL
+            </span>
+          </div>
+        </NavLink>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-8">
-           <a
-            href="#home"
+          <NavLink
+            to="/"
             className="text-off-white hover:text-primary dark:hover:text-bright-orange transition-colors"
           >
             Home
-          </a>
-          <a
-            href="#about"
-            className="text-off-white hover:text-primary dark:hover:text-bright-orange transition-colors"
-          >
-            About Us
-          </a>
-          <a
-            href="#projects"
+          </NavLink>
+          <NavLink
+            to="/projects"
             className="text-off-white hover:text-primary dark:hover:text-bright-orange transition-colors"
           >
             Projects
-          </a>
-          <a
-            href="#contact"
+          </NavLink>
+
+          <NavLink
+            to="/blogs"
+            className="text-off-white hover:text-primary dark:hover:text-bright-orange transition-colors"
+          >
+            Blogs
+          </NavLink>
+          <NavLink
+            to="/about"
+            className="text-off-white hover:text-primary dark:hover:text-bright-orange transition-colors"
+          >
+            About Us
+          </NavLink>
+          <NavLink
+            to="/contact"
             className="text-off-white hover:text-primary dark:hover:text-bright-orange transition-colors"
           >
             Contact Us
-          </a>
+          </NavLink>
         </nav>
 
         {/* Theme Toggle */}
