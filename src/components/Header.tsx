@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { Menu, X, Sun, Moon, ChevronDown } from 'lucide-react';
-import { useTheme } from '../context/ThemeContext';
+import React, { useState } from "react";
+import { Menu, X, Sun, Moon, ChevronDown } from "lucide-react";
+import { useTheme } from "../context/ThemeContext";
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -8,12 +8,12 @@ const Header: React.FC = () => {
   const { isDark, toggleTheme } = useTheme();
 
   const menuItems = [
-    { name: 'About Us', href: '#about' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Our Service Locations', href: '#locations' },
-    { name: 'FAQ Chatbot', href: '#chatbot' },
-    { name: 'User Stories', href: '#stories' },
-    { name: 'Blogs', href: '#blogs' },
+    { name: "About Us", href: "#about" },
+    { name: "Projects", href: "#projects" },
+    { name: "Our Service Locations", href: "#locations" },
+    { name: "FAQ Chatbot", href: "#chatbot" },
+    { name: "User Stories", href: "#stories" },
+    { name: "Blogs", href: "#blogs" },
   ];
 
   return (
@@ -33,18 +33,29 @@ const Header: React.FC = () => {
             <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-green-500 rounded-full flex items-center justify-center">
               <Sun className="w-6 h-6 text-white" />
             </div>
-            <span className="text-xl font-bold text-blue-600 dark:text-blue-400">AXISOL</span>
+            <span className="text-xl font-bold text-blue-600 dark:text-blue-400">
+              AXISOL
+            </span>
           </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-8">
-            <a href="#about" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+            <a
+              href="#about"
+              className="text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+            >
               About Us
             </a>
-            <a href="#projects" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+            <a
+              href="#projects"
+              className="text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+            >
               Projects
             </a>
-            <a href="#contact" className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+            <a
+              href="#contact"
+              className="text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+            >
               Contact Us
             </a>
           </nav>
