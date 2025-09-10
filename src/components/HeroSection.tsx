@@ -137,26 +137,6 @@ const HeroSection: React.FC = () => {
           />
         ))}
       </div>
-
-      {/* Stats Bar */}
-      <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-r from-blue-600/90 to-green-600/90 backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex justify-center md:justify-between items-center flex-wrap gap-6">
-            <div className="flex items-center space-x-2 text-white">
-              <Users size={20} />
-              <span className="font-semibold">50,000+ Happy Customers</span>
-            </div>
-            <div className="flex items-center space-x-2 text-white">
-              <MapPin size={20} />
-              <span className="font-semibold">Pan India Service</span>
-            </div>
-            <div className="flex items-center space-x-2 text-white">
-              <Award size={20} />
-              <span className="font-semibold">₹90L Subsidy Available</span>
-            </div>
-          </div>
-        </div>
-      </div>
     </section>
   );
 };
