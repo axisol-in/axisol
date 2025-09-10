@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, Users, MapPin, Award } from 'lucide-react';
+import React, { useState, useEffect } from "react";
+import { ChevronLeft, ChevronRight, Users, MapPin, Award } from "lucide-react";
 
 const HeroSection: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -8,24 +8,30 @@ const HeroSection: React.FC = () => {
     {
       title: "Zero Investment Solar Installation",
       subtitle: "Join 50,000+ Happy Customers",
-      description: "Get solar panels installed with zero upfront cost. Pay monthly to us instead of your electricity provider, then enjoy free power!",
-      image: "https://images.pexels.com/photos/9875415/pexels-photo-9875415.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      badges: ["50,000+ Customers", "Made in India"]
+      description:
+        "Get solar panels installed with zero upfront cost. Pay monthly to us instead of your electricity provider, then enjoy free power!",
+      image:
+        "https://images.pexels.com/photos/9875415/pexels-photo-9875415.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      badges: ["50,000+ Customers", "Made in India"],
     },
     {
       title: "How Our Zero Investment Scheme Works",
       subtitle: "Simple. Smart. Sustainable.",
-      description: "Step 1: Free Installation • Step 2: Pay us monthly (less than your current bill) • Step 3: After contract period, enjoy completely free electricity forever!",
-      image: "https://images.pexels.com/photos/9875394/pexels-photo-9875394.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      badges: ["Zero Investment", "Guaranteed Savings"]
+      description:
+        "Step 1: Free Installation • Step 2: Pay us monthly (less than your current bill) • Step 3: After contract period, enjoy completely free electricity forever!",
+      image:
+        "https://images.pexels.com/photos/9875394/pexels-photo-9875394.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      badges: ["Zero Investment", "Guaranteed Savings"],
     },
     {
       title: "Transform Your Home with Solar Power",
       subtitle: "Professional Rooftop Installations",
-      description: "See how solar panels seamlessly integrate with your home's architecture while providing clean, renewable energy for decades.",
-      image: "https://images.pexels.com/photos/9875413/pexels-photo-9875413.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
-      badges: ["25 Year Warranty", "Premium Quality"]
-    }
+      description:
+        "See how solar panels seamlessly integrate with your home's architecture while providing clean, renewable energy for decades.",
+      image:
+        "https://images.pexels.com/photos/9875413/pexels-photo-9875413.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+      badges: ["25 Year Warranty", "Premium Quality"],
+    },
   ];
 
   useEffect(() => {
@@ -44,14 +50,14 @@ const HeroSection: React.FC = () => {
   };
 
   return (
-    <section className="relative h-screen overflow-hidden">
+    <section className="w-screen h-screen">
       {/* Slideshow */}
       <div className="relative w-full h-full">
         {slides.map((slide, index) => (
           <div
             key={index}
             className={`absolute inset-0 transition-opacity duration-1000 ${
-              index === currentSlide ? 'opacity-100' : 'opacity-0'
+              index === currentSlide ? "opacity-100" : "opacity-0"
             }`}
           >
             <div className="relative w-full h-full">
@@ -126,7 +132,7 @@ const HeroSection: React.FC = () => {
             key={index}
             onClick={() => setCurrentSlide(index)}
             className={`w-3 h-3 rounded-full transition-all duration-200 ${
-              index === currentSlide ? 'bg-white scale-125' : 'bg-white/50'
+              index === currentSlide ? "bg-white scale-125" : "bg-white/50"
             }`}
           />
         ))}
