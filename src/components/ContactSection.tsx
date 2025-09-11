@@ -250,6 +250,16 @@ const ContactSection: React.FC = () => {
                 </div>
               </div>
 
+              {errors.email || errors.phone ? (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.email?.message || errors.phone?.message || "\u00A0"}
+                </p>
+              ) : (
+                <p className="text-red-500 text-sm mt-1 text-transparent opacity-0">
+                  &nbsp
+                </p>
+              )}
+
               <button
                 type="submit"
                 className="w-full py-4 px-6 bg-gradient-to-r from-blue-600 to-green-600 text-white rounded-xl font-semibold hover:from-blue-700 hover:to-green-700 transform hover:scale-105 transition-all duration-200 shadow-lg flex items-center justify-center space-x-2"
@@ -257,16 +267,6 @@ const ContactSection: React.FC = () => {
                 <Send className="w-5 h-5" />
                 <span>Send Message</span>
               </button>
-              {errors.name && (
-                <p className="text-red-500 text-sm mt-1">
-                  {errors.name.message}
-                </p>
-              )}
-              {errors.phone && (
-                <p className="text-red-500 text-sm mt-1">
-                  {errors.phone.message}
-                </p>
-              )}
             </form>
 
             <div className="mt-8 flex items-center justify-center space-x-6 text-sm text-gray-500 dark:text-gray-400">
