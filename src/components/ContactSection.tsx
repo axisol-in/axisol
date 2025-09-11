@@ -1,6 +1,8 @@
 import React from "react";
-import { useReducer } from "react";
 import emailjs from "@emailjs/browser";
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 import {
   Phone,
   Mail,
@@ -14,67 +16,35 @@ import {
   Headphones as HeadphonesIcon,
 } from "lucide-react";
 
-type formField = {
-  name: string;
-  email: string;
-  phone: string;
-  location: string;
-  message: string;
-};
+const contactSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters"),
+  email: z.email("Invalid email address"),
+  phone: z.string().regex(/^(\+91)?\d{10}$/, "Must be a valid 10-digit number"),
+  location: z.string(),
+  message: z.string().optional(),
+});
 
-const initialState: formField = {
-  name: "",
-  email: "",
-  phone: "",
-  location: "",
-  message: "",
-};
-
-type Action =
-  | { type: "SET_FIELD"; field: keyof formField; value: string }
-  | { type: "RESET" };
+type ContactFormValues = z.infer<typeof contactSchema>;
 
 const ContactSection: React.FC = () => {
-  const formReducer = (state: formField, action: Action) => {
-    switch (action.type) {
-      case "SET_FIELD":
-        return { ...state, [action.field]: action.value };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<ContactFormValues>({
+    resolver: zodResolver(contactSchema),
+  });
 
-      case "RESET":
-        return initialState;
-
-      default:
-        return state;
-    }
-  };
-
-  const [state, dispatch] = useReducer(formReducer, initialState);
-
-  const handleChange = (
-    event:
-      | React.ChangeEvent<HTMLInputElement>
-      | React.ChangeEvent<HTMLTextAreaElement>,
-  ) => {
-    dispatch({
-      type: "SET_FIELD",
-      field: event.target.name as keyof formField,
-      value: event.target.value,
-    });
-  };
-
-  const handleSubmit = (event: React.FormEvent) => {
-    event.preventDefault();
-    console.log(
-      `Form Submitted: Name: ${state.name}\nNumber: ${state.phone}\nEmail: ${state.email}\nLocation: ${state.location}\nMessage: ${state.message}`,
-    );
+  const onSubmit = (data: ContactFormValues) => {
     emailjs
       .send(
         "service_awozojj",
         "template_8vm1yxr",
         {
-          content: `Name: ${state.name}\nNumber: ${state.phone}\nEmail: ${state.email}\nLocation: ${state.location}\nMessage: ${state.message}`,
-          email: state.email,
-          name: state.name,
+          content: `Name: ${data.name}\nNumber: ${data.phone}\nEmail: ${data.email}\nLocation: ${data.location}\nMessage: ${data.message}`,
+          email: data.email,
+          name: data.name,
         },
         {
           publicKey: "84e7GcE9bJdWR-aMZ",
@@ -83,7 +53,7 @@ const ContactSection: React.FC = () => {
       .then(
         () => {
           console.log("SUCCESS!");
-          dispatch({ type: "RESET" });
+          reset();
         },
         (error) => {
           console.log("FAILED...", error.text);
@@ -203,7 +173,7 @@ const ContactSection: React.FC = () => {
               </div>
             </div>
 
-            <form className="space-y-6">
+            <form className="space-y-6" onSubmit={handleSubmit(onSubmit)}>
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -213,11 +183,9 @@ const ContactSection: React.FC = () => {
                     <User className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                     <input
                       type="text"
-                      name="name"
-                      value={state.name}
+                      {...register("name")}
                       className="w-full pl-12 pr-4 py-4 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
                       placeholder="Enter your full name"
-                      onChange={handleChange}
                     />
                   </div>
                 </div>
@@ -229,11 +197,9 @@ const ContactSection: React.FC = () => {
                     <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
                     <input
                       type="tel"
-                      name="phone"
-                      value={state.phone}
+                      {...register("phone")}
                       className="w-full pl-12 pr-4 py-4 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
                       placeholder="+91 98765 43210"
-                      onChange={handleChange}
                     />
                   </div>
                 </div>
@@ -249,9 +215,7 @@ const ContactSection: React.FC = () => {
                     type="email"
                     className="w-full pl-12 pr-4 py-4 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
                     placeholder="your.email@example.com"
-                    onChange={handleChange}
-                    name="email"
-                    value={state.email}
+                    {...register("email")}
                   />
                 </div>
               </div>
@@ -266,9 +230,7 @@ const ContactSection: React.FC = () => {
                     type="text"
                     className="w-full pl-12 pr-4 py-4 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
                     placeholder="City, State"
-                    onChange={handleChange}
-                    name="location"
-                    value={state.location}
+                    {...register("location")}
                   />
                 </div>
               </div>
@@ -283,9 +245,7 @@ const ContactSection: React.FC = () => {
                     rows={4}
                     className="w-full pl-12 pr-4 py-4 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors resize-none"
                     placeholder="Tell us about your requirements..."
-                    onChange={handleChange}
-                    name="message"
-                    value={state.message}
+                    {...register("message")}
                   ></textarea>
                 </div>
               </div>
@@ -293,11 +253,20 @@ const ContactSection: React.FC = () => {
               <button
                 type="submit"
                 className="w-full py-4 px-6 bg-gradient-to-r from-blue-600 to-green-600 text-white rounded-xl font-semibold hover:from-blue-700 hover:to-green-700 transform hover:scale-105 transition-all duration-200 shadow-lg flex items-center justify-center space-x-2"
-                onClick={handleSubmit}
               >
                 <Send className="w-5 h-5" />
                 <span>Send Message</span>
               </button>
+              {errors.name && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.name.message}
+                </p>
+              )}
+              {errors.phone && (
+                <p className="text-red-500 text-sm mt-1">
+                  {errors.phone.message}
+                </p>
+              )}
             </form>
 
             <div className="mt-8 flex items-center justify-center space-x-6 text-sm text-gray-500 dark:text-gray-400">
