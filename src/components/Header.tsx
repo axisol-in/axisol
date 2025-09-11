@@ -46,7 +46,7 @@ const Header: React.FC = () => {
             to="/"
             className="text-off-white hover:text-primary dark:hover:text-bright-orange transition-colors"
           >
-            Home
+            HOME
           </NavLink>
           <NavLink
             to="/projects"
