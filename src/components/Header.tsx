@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Menu, X, Sun, Moon, ChevronDown } from "lucide-react";
+import { NavLink } from "react-router-dom";
 import { useTheme } from "../context/ThemeContext";
 
 const Header: React.FC = () => {
@@ -8,86 +9,102 @@ const Header: React.FC = () => {
   const { isDark, toggleTheme } = useTheme();
 
   const menuItems = [
-    { name: "About Us", href: "#about" },
-    { name: "Projects", href: "#projects" },
-    { name: "Our Service Locations", href: "#locations" },
-    { name: "FAQ Chatbot", href: "#chatbot" },
-    { name: "User Stories", href: "#stories" },
-    { name: "Blogs", href: "#blogs" },
+    { name: "Home", href: "/" },
+    { name: "Projects", href: "/projets" },
+    { name: "Blogs", href: "/blogs" },
+    { name: "About Us", href: "/about" },
+    { name: "Contact Us", href: "/contact" },
   ];
 
   return (
-    <header className="fixed top-0 w-[80%] ml-[10%] mt-5 pl-10 pr-10 z-50 dark:bg-very-dark-green/95 backdrop-blur-lg shadow-2xl transition-colors duration-300 rounded-full">
-      <div className="flex justify-between items-center h-16">
-        {/* Mobile Menu Button */}
-        <button
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="md:hidden p-2 rounded-md text-deep-navy dark:text-off-white hover:bg-light-cream dark:hover:bg-slate-blue transition-colors"
-        >
-          {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+    <>
+      <header className="fixed top-5 w-[90%] lg:w-[80%] pl-10 pr-10 z-40 backdrop-blur-lg shadow-2xl transition-colors duration-300 rounded-full">
+        <div className="flex justify-between items-center h-16">
+          {/* Mobile Menu Button */}
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="md:hidden p-2 rounded-md text-off-white"
+          >
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
 
-        {/* Logo */}
-        <div className="flex items-center space-x-2">
-          <img
-            className="h-7"
-            src="https://axisol.in/wp-content/uploads/2024/12/cropped-cropped-Axisol-Logo-1-300x134.png"
-          />
-          <span className="text-2xl font-bold text-primary dark:text-bright-orange">
-            AXISOL
-          </span>
+          {/* Logo */}
+          <NavLink to="/">
+            <div className="flex items-center space-x-2">
+              <img
+                className="h-7"
+                src="https://axisol.in/wp-content/uploads/2024/12/cropped-cropped-Axisol-Logo-1-300x134.png"
+              />
+              <span className="text-2xl font-bold text-primary dark:text-bright-orange">
+                AXISOL
+              </span>
+            </div>
+          </NavLink>
+
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center lg:space-x-12 md:space-x-8">
+            <NavLink
+              to="/"
+              className="text-off-white hover:text-primary dark:hover:text-bright-orange transition-colors"
+            >
+              Home
+            </NavLink>
+            <NavLink
+              to="/projects"
+              className="text-off-white hover:text-primary dark:hover:text-bright-orange transition-colors"
+            >
+              Projects
+            </NavLink>
+
+            <NavLink
+              to="/blogs"
+              className="text-off-white hover:text-primary dark:hover:text-bright-orange transition-colors"
+            >
+              Blogs
+            </NavLink>
+            <NavLink
+              to="/about"
+              className="text-off-white hover:text-primary dark:hover:text-bright-orange transition-colors"
+            >
+              About Us
+            </NavLink>
+            <NavLink
+              to="/contact"
+              className="text-off-white hover:text-primary dark:hover:text-bright-orange transition-colors"
+            >
+              Contact Us
+            </NavLink>
+          </nav>
+
+          {/* Theme Toggle */}
+          <button
+            onClick={toggleTheme}
+            className="p-2 rounded-md text-primary dark:text-off-white hover:scale-110 transition-transform dark:hover:text-primary hover:text-white max-md:opacity-0 max-md:pointer-events-none"
+          >
+            {isDark ? <Sun size={20} /> : <Moon size={20} />}
+          </button>
         </div>
-
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center space-x-8">
-           <a
-            href="#home"
-            className="text-off-white hover:text-primary dark:hover:text-bright-orange transition-colors"
-          >
-            Home
-          </a>
-          <a
-            href="#about"
-            className="text-off-white hover:text-primary dark:hover:text-bright-orange transition-colors"
-          >
-            About Us
-          </a>
-          <a
-            href="#projects"
-            className="text-off-white hover:text-primary dark:hover:text-bright-orange transition-colors"
-          >
-            Projects
-          </a>
-          <a
-            href="#contact"
-            className="text-off-white hover:text-primary dark:hover:text-bright-orange transition-colors"
-          >
-            Contact Us
-          </a>
-        </nav>
-
-        {/* Theme Toggle */}
-        <button
-          onClick={toggleTheme}
-          className="p-2 rounded-md text-primary dark:text-off-white transition-all hover:scale-125 dark:hover:text-primary hover:text-white"
-        >
-          {isDark ? <Sun size={20} /> : <Moon size={20} />}
-        </button>
-      </div>
+      </header>
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden absolute top-16 left-0 right-0 bg-surface dark:bg-very-dark-green shadow-lg border-t border-light-gray-green dark:border-slate-blue">
+        <div className="w-[100vw] h-[100vh] md:hidden fixed top-0 left-0 z-50 bg-surface dark:bg-very-dark-green shadow-lg ">
           <div className="px-4 py-2 space-y-1">
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="p-2 rounded-md text-secondary dark:text-off-white block px-3 pt-10"
+            >
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
             {menuItems.map((item) => (
-              <a
+              <NavLink
                 key={item.name}
-                href={item.href}
+                to={item.href}
                 className="block px-3 py-2 text-deep-navy dark:text-off-white hover:bg-light-cream dark:hover:bg-slate-blue rounded-md transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.name}
-              </a>
+              </NavLink>
             ))}
             <div className="relative">
               <button
@@ -102,20 +119,16 @@ const Header: React.FC = () => {
                   <button
                     onClick={() => {
                       if (isDark) toggleTheme();
-                      setIsThemeDropdownOpen(false);
-                      setIsMenuOpen(false);
                     }}
-                    className="block w-full text-left px-3 py-2 text-sm text-neutral dark:text-medium-gray hover:bg-light-cream dark:hover:bg-slate-blue rounded-md"
+                    className="block w-full text-left px-3 py-2 text-sm text-neutral dark:text-medium-gray rounded-md"
                   >
                     Light Theme
                   </button>
                   <button
                     onClick={() => {
                       if (!isDark) toggleTheme();
-                      setIsThemeDropdownOpen(false);
-                      setIsMenuOpen(false);
                     }}
-                    className="block w-full text-left px-3 py-2 text-sm text-neutral dark:text-medium-gray hover:bg-light-cream dark:hover:bg-slate-blue rounded-md"
+                    className="block w-full text-left px-3 py-2 text-sm text-neutral dark:text-medium-gray rounded-md"
                   >
                     Dark Theme
                   </button>
@@ -125,7 +138,7 @@ const Header: React.FC = () => {
           </div>
         </div>
       )}
-    </header>
+    </>
   );
 };
 

@@ -102,9 +102,9 @@ const WhyChooseSection: React.FC = () => {
           ))}
         </div>
 
-        {/* Call to Action */}
-        <div className="text-center mt-16">
-          <div className="inline-flex items-center space-x-4 p-6 bg-gradient-to-r from-blue-600 to-green-600 rounded-2xl text-white shadow-xl">
+        {/* Call to Action
+        <div className="w-full text-center mt-16">
+          <div className="w-full inline-flex items-center space-x-4 p-6 bg-gradient-to-r from-blue-600 to-green-600 rounded-2xl text-white shadow-xl">
             <div className="flex items-center space-x-2">
               <Award className="w-6 h-6" />
               <span className="font-semibold">Government Approved</span>
@@ -120,7 +120,7 @@ const WhyChooseSection: React.FC = () => {
               <span className="font-semibold">Trusted by 50,000+</span>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </section>
   );
