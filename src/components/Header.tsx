@@ -10,19 +10,21 @@ const Header: React.FC = () => {
 
   const menuItems = [
     { name: "Home", href: "/home" },
-    { name: "Projects", href: "/projets" },
+    { name: "Projects", href: "/projects" },
     { name: "Blogs", href: "/blogs" },
     { name: "About Us", href: "/about" },
     { name: "Contact Us", href: "/contact" },
   ];
 
   return (
-    <header className="fixed top-0 w-[80%] ml-[10%] mt-5 pl-10 pr-10 z-50 backdrop-blur-lg shadow-2xl transition-colors duration-300 rounded-full">
+    <header className="fixed top-0 w-[80%] ml-[10%] mt-5 pl-10 pr-10 z-50 
+                       backdrop-blur-lg shadow-2xl transition-colors duration-300 
+                       rounded-full bg-white/30 dark:bg-black/30">
       <div className="flex justify-between items-center h-16">
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="md:hidden p-2 rounded-md text-off-white hover:bg-light-cream dark:hover:bg-slate-blue transition-colors"
+          className="md:hidden p-2 rounded-md text-deep-navy dark:text-off-white hover:bg-light-cream dark:hover:bg-slate-blue transition-colors"
         >
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -44,32 +46,31 @@ const Header: React.FC = () => {
         <nav className="hidden md:flex items-center space-x-8">
           <NavLink
             to="/"
-            className="text-off-white hover:text-primary dark:hover:text-bright-orange transition-colors"
+            className="text-deep-navy dark:text-off-white hover:text-primary dark:hover:text-bright-orange transition-colors"
           >
             Home
           </NavLink>
           <NavLink
             to="/projects"
-            className="text-off-white hover:text-primary dark:hover:text-bright-orange transition-colors"
+            className="text-deep-navy dark:text-off-white hover:text-primary dark:hover:text-bright-orange transition-colors"
           >
             Projects
           </NavLink>
-
           <NavLink
             to="/blogs"
-            className="text-off-white hover:text-primary dark:hover:text-bright-orange transition-colors"
+            className="text-deep-navy dark:text-off-white hover:text-primary dark:hover:text-bright-orange transition-colors"
           >
             Blogs
           </NavLink>
           <NavLink
             to="/about"
-            className="text-off-white hover:text-primary dark:hover:text-bright-orange transition-colors"
+            className="text-deep-navy dark:text-off-white hover:text-primary dark:hover:text-bright-orange transition-colors"
           >
             About Us
           </NavLink>
           <NavLink
             to="/contact"
-            className="text-off-white hover:text-primary dark:hover:text-bright-orange transition-colors"
+            className="text-deep-navy dark:text-off-white hover:text-primary dark:hover:text-bright-orange transition-colors"
           >
             Contact Us
           </NavLink>
@@ -78,7 +79,7 @@ const Header: React.FC = () => {
         {/* Theme Toggle */}
         <button
           onClick={toggleTheme}
-          className="p-2 rounded-md text-primary dark:text-off-white transition-all hover:scale-125 dark:hover:text-primary hover:text-white"
+          className="p-2 rounded-md text-primary dark:text-off-white transition-all hover:scale-125 dark:hover:text-primary hover:text-deep-navy"
         >
           {isDark ? <Sun size={20} /> : <Moon size={20} />}
         </button>
@@ -86,7 +87,7 @@ const Header: React.FC = () => {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden absolute top-16 left-0 right-0 bg-surface dark:bg-very-dark-green shadow-lg border-t border-light-gray-green dark:border-slate-blue">
+        <div className="md:hidden absolute top-16 left-0 right-0 bg-white/90 dark:bg-black/90 shadow-lg border-t border-light-gray-green dark:border-slate-blue">
           <div className="px-4 py-2 space-y-1">
             {menuItems.map((item) => (
               <a
