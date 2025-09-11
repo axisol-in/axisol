@@ -7,15 +7,17 @@ const HeroSection: React.FC = () => {
         <h1 className="text-4xl md:text-6xl font-bold text-white mb-2 drop-shadow-lg pointer-events-auto text-center">
           Zero Investment
         </h1>
-        <h2 className="text-xl md:text-2xl text-white mb-10 drop-shadow-lg text-center">Go Solar, Infinite Savings</h2>
+        <h2 className="text-xl md:text-2xl text-white mb-10 drop-shadow-lg text-center">
+          Go Solar, Infinite Savings
+        </h2>
         <div className="flex gap-10">
           <Button
             title="Know More"
-            className="pointer-events-auto bg-primary"
+            className="pointer-events-auto bg-primary rounded-full hover:scale-105 transition-transform"
           />
           <Button
             title="Contact US"
-            className="pointer-events-auto bg-transparent text-white border-2 hover:bg-white hover:text-black"
+            className="pointer-events-auto bg-transparent text-white border-2 hover:bg-white hover:text-black rounded-full hover:scale-105 transition-transform"
           />
         </div>
       </div>
