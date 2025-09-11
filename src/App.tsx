@@ -11,7 +11,6 @@ import Chatbot from "./components/Chatbot";
 // import VideoSection from "./components/VideoSection";
 // import UserStoriesSection from "./components/UserStoriesSection";
 // import BlogsSection from "./components/BlogsSection";
-import ContactSection from "./components/ContactSection";
 
 import { ThemeProvider } from "./context/ThemeContext";
 
@@ -34,7 +33,6 @@ const AppContent: React.FC = () => {
           <Route path="/blogs" element={<BlogsPage />} />
         </Routes>
         <Chatbot />
-        <ContactSection />
       </div>
     </BrowserRouter>
   );
