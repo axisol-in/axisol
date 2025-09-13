@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Menu, X, Sun, Moon, ChevronDown } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import { useTheme } from "../context/ThemeContext";
+import logo from "../assets/logos/logo.png";
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -31,10 +32,7 @@ const Header: React.FC = () => {
           {/* Logo */}
           <NavLink to="/">
             <div className="flex items-center space-x-2">
-              <img
-                className="h-7"
-                src="https://axisol.in/wp-content/uploads/2024/12/cropped-cropped-Axisol-Logo-1-300x134.png"
-              />
+              <img className="h-7" src={logo} />
               <span className="text-2xl font-bold text-primary dark:text-bright-orange">
                 AXISOL
               </span>
