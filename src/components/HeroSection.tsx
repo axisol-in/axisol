@@ -5,7 +5,7 @@ import HeroVideo from "../assets/videos/hero-video.mp4";
 
 const HeroSection: React.FC = () => {
   return (
-    <section className="w-screen h-screen">
+    <section className="w-screen h-screen" data-bg="black">
       <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center z-10 pointer-events-none">
         <h1 className="text-4xl md:text-6xl font-bold text-white mb-2 drop-shadow-lg pointer-events-auto text-center">
           Zero Investment

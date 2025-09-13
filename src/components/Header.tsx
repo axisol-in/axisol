@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Menu, X, Sun, Moon, ChevronDown } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import { useTheme } from "../context/ThemeContext";
@@ -16,9 +16,36 @@ const Header: React.FC = () => {
     { name: "Contact Us", href: "/contact" },
   ];
 
+  // Breakpoint based navbar theme
+
+  const [navColor, setNavColor] = useState<"white" | "black">("white");
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const bg = (entry.target as HTMLElement).dataset.bg;
+            if (bg === "white" || bg === "black") {
+              setNavColor(bg as "white" | "black");
+            }
+          }
+        });
+      },
+      { threshold: 0.6 },
+    );
+
+    const els = Array.from(document.querySelectorAll<HTMLElement>("[data-bg]"));
+    els.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <>
-      <header className="fixed top-5 w-[90%] lg:w-[80%] pl-10 pr-10 z-40 backdrop-blur-lg shadow-2xl transition-colors duration-300 rounded-full">
+      <header
+        className={`fixed top-5 w-[90%] lg:w-[80%] pl-10 pr-10 z-40 backdrop-blur-lg shadow-2xl transition-colors duration-300 rounded-full ${navColor === "white" ? "bg-white/20 backdrop-blur-lg" : "bg-slate-800 backdrop-blur-2xl bg-opacity-50"}`}
+      >
         <div className="flex justify-between items-center h-16">
           {/* Mobile Menu Button */}
           <button

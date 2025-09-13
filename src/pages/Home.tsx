@@ -10,7 +10,7 @@ const HomePage: React.FC = () => {
   return (
     <>
       <HeroSection />
-      <div className="w-full bg-[#f7f9fb] pt-16 pb-10 flex justify-center items-center flex-col">
+      <div className="w-full bg-[#f7f9fb] pt-16 pb-10 flex justify-center items-center flex-col" data-bg="black">
         <h1 className="text-2 md:text-4xl text-black mb-2 drop-shadow-lg pointer-events-auto text-center ">
           Save On Electricity Bills
         </h1>
