@@ -4,6 +4,7 @@ import WhyChooseSection from "../components/WhyChooseSection";
 
 import Home1 from "../assets/images/home1.png";
 import Home2 from "../assets/images/home2.png";
+import ProjectsSection from "../components/ProjectsSection";
 
 
 const HomePage: React.FC = () => {
@@ -25,6 +26,7 @@ const HomePage: React.FC = () => {
       <img src={Home1} alt="Home 1 Image" className="w-full" />
       <WhyChooseSection />
       <img src={Home2} alt="Home 2 Image" className="w-full" />
+      <ProjectsSection/>
     </>
   );
 };

@@ -8,18 +8,40 @@ const Header: React.FC = () => {
   const [isThemeDropdownOpen, setIsThemeDropdownOpen] = useState(false);
   const { isDark, toggleTheme } = useTheme();
   const [scrolled, setScrolled] = useState(false);
+  const [sectionTheme, setSectionTheme] = useState<"light" | "dark">("light");
 
+  // Scroll detection
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 30);
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  // Intersection Observer → detect section theme
+  useEffect(() => {
+    const sections = document.querySelectorAll("[data-theme]");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const currentTheme =
+              entry.target.getAttribute("data-theme") || "light";
+            setSectionTheme(currentTheme as "light" | "dark");
+          }
+        });
+      },
+      { threshold: 0.6 }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+    return () => observer.disconnect();
   }, []);
 
   const menuItems = [
     { name: "Home", href: "/" },
-    { name: "Projects", href: "/projets" },
+    { name: "Projects", href: "/projects" },
     { name: "Blogs", href: "/blogs" },
     { name: "About Us", href: "/about" },
     { name: "Contact Us", href: "/contact" },
@@ -27,12 +49,17 @@ const Header: React.FC = () => {
 
   return (
     <>
-  <header className={`fixed top-5 w-[90%] lg:w-[80%] pl-10 pr-10 z-40 backdrop-blur-lg shadow-2xl transition-colors duration-300 rounded-full ${scrolled ? 'bg-white/90 dark:bg-black/80' : 'bg-transparent'}`}>
+      <header
+        className={`fixed top-5 w-[90%] lg:w-[80%] pl-10 pr-10 z-40 backdrop-blur-lg shadow-2xl transition-colors duration-300 rounded-full
+          ${scrolled ? "bg-white/90 dark:bg-black/80" : "bg-transparent"}
+          ${sectionTheme === "light" ? "text-" : "text-grey-500"}
+        `}
+      >
         <div className="flex justify-between items-center h-16">
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 rounded-md text-off-white"
+            className="md:hidden p-2 rounded-md"
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -52,43 +79,21 @@ const Header: React.FC = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center lg:space-x-12 md:space-x-8">
-            <NavLink
-              to="/"
-              className="text-off-white hover:text-primary dark:hover:text-bright-orange transition-colors"
-            >
-              Home
-            </NavLink>
-            <NavLink
-              to="/projects"
-              className="text-off-white hover:text-primary dark:hover:text-bright-orange transition-colors"
-            >
-              Projects
-            </NavLink>
-
-            <NavLink
-              to="/blogs"
-              className="text-off-white hover:text-primary dark:hover:text-bright-orange transition-colors"
-            >
-              Blogs
-            </NavLink>
-            <NavLink
-              to="/about"
-              className="text-off-white hover:text-primary dark:hover:text-bright-orange transition-colors"
-            >
-              About Us
-            </NavLink>
-            <NavLink
-              to="/contact"
-              className="text-off-white hover:text-primary dark:hover:text-bright-orange transition-colors"
-            >
-              Contact Us
-            </NavLink>
+            {menuItems.map((item) => (
+              <NavLink
+                key={item.name}
+                to={item.href}
+                className="hover:text-primary dark:hover:text-bright-orange transition-colors"
+              >
+                {item.name}
+              </NavLink>
+            ))}
           </nav>
 
           {/* Theme Toggle */}
           <button
             onClick={toggleTheme}
-            className="p-2 rounded-md text-primary dark:text-off-white hover:scale-110 transition-transform dark:hover:text-primary hover:text-white max-md:opacity-0 max-md:pointer-events-none"
+            className="p-2 rounded-md hover:scale-110 transition-transform"
           >
             {isDark ? <Sun size={20} /> : <Moon size={20} />}
           </button>
@@ -97,11 +102,11 @@ const Header: React.FC = () => {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="w-[100vw] h-[100vh] md:hidden fixed top-0 left-0 z-50 bg-surface dark:bg-very-dark-green shadow-lg ">
+        <div className="w-[100vw] h-[100vh] md:hidden fixed top-0 left-0 z-50 bg-surface dark:bg-very-dark-green shadow-lg">
           <div className="px-4 py-2 space-y-1">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 rounded-md text-secondary dark:text-off-white block px-3 pt-10"
+              className="p-2 rounded-md block px-3 pt-10"
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -109,41 +114,12 @@ const Header: React.FC = () => {
               <NavLink
                 key={item.name}
                 to={item.href}
-                className="block px-3 py-2 text-deep-navy dark:text-off-white hover:bg-light-cream dark:hover:bg-slate-blue rounded-md transition-colors"
+                className="block px-3 py-2 hover:bg-light-cream dark:hover:bg-slate-blue rounded-md transition-colors"
                 onClick={() => setIsMenuOpen(false)}
               >
                 {item.name}
               </NavLink>
             ))}
-            <div className="relative">
-              <button
-                onClick={() => setIsThemeDropdownOpen(!isThemeDropdownOpen)}
-                className="flex items-center justify-between w-full px-3 py-2 text-deep-navy dark:text-off-white hover:bg-light-cream dark:hover:bg-slate-blue rounded-md transition-colors"
-              >
-                Theme
-                <ChevronDown size={16} />
-              </button>
-              {isThemeDropdownOpen && (
-                <div className="ml-4 mt-1 space-y-1">
-                  <button
-                    onClick={() => {
-                      if (isDark) toggleTheme();
-                    }}
-                    className="block w-full text-left px-3 py-2 text-sm text-neutral dark:text-medium-gray rounded-md"
-                  >
-                    Light Theme
-                  </button>
-                  <button
-                    onClick={() => {
-                      if (!isDark) toggleTheme();
-                    }}
-                    className="block w-full text-left px-3 py-2 text-sm text-neutral dark:text-medium-gray rounded-md"
-                  >
-                    Dark Theme
-                  </button>
-                </div>
-              )}
-            </div>
           </div>
         </div>
       )}
