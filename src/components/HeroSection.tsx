@@ -1,7 +1,5 @@
-import Button from "./ui/Button";
-
 import HeroVideo from "../assets/videos/hero-video.mp4";
-//import HeroVideo from "https://digitalassets.tesla.com/tesla-contents/video/upload/f_auto,q_auto/Solar-Panel-Hero-Desktop.mp4";
+import { NavLink } from "react-router-dom";
 
 const HeroSection: React.FC = () => {
   return (
@@ -14,16 +12,18 @@ const HeroSection: React.FC = () => {
           Go Solar, Infinite Savings
         </h2>
         <div className="flex gap-10">
-          <a href="/about">
-            <Button
-            title="Know More"
-            className="pointer-events-auto bg-primary rounded-full hover:scale-105 transition-transform"
-          />
-          </a>
-          <Button
-            title="Contact US"
-            className="pointer-events-auto bg-transparent text-white border-2 hover:bg-white hover:text-black rounded-full hover:scale-105 transition-transform"
-          />
+          <NavLink
+            to="/about"
+            className="pointer-events-auto bg-primary rounded-full hover:scale-105 transition-transform px-4 py-2"
+          >
+            Know More
+          </NavLink>
+          <NavLink
+            to="/contact"
+            className="pointer-events-auto bg-transparent text-white border-2 hover:bg-white hover:text-black rounded-full hover:scale-105 transition-transform px-4 py-2"
+          >
+            Contact Us
+          </NavLink>
         </div>
       </div>
 

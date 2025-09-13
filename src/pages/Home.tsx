@@ -5,8 +5,6 @@ import WhyChooseSection from "../components/WhyChooseSection";
 import Slider from "../components/Slider";
 
 import Home1 from "../assets/images/home1.png";
-import Home2 from "../assets/images/home2.png";
-
 
 const HomePage: React.FC = () => {
   return (
@@ -26,7 +24,7 @@ const HomePage: React.FC = () => {
       </div>
       <img src={Home1} alt="Home 1 Image" className="w-full" />
       <WhyChooseSection />
-      <img src={Home2} alt="Home 2 Image" className="w-full" />
+      <Slider />
     </>
   );
 };
