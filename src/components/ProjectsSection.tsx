@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { MapPin, Zap, Calendar } from 'lucide-react';
+import {projectImages}  from '../assets/assets';
 
 const ProjectsSection: React.FC = () => {
   const [filter, setFilter] = useState('all');
@@ -8,8 +9,9 @@ const ProjectsSection: React.FC = () => {
   const projects = [
     {
       id: 1,
-      image: "https://images.pexels.com/photos/9875392/pexels-photo-9875392.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=2",
-      location: "Mumbai, Maharashtra",
+      image: projectImages.residential.pcmc,
+      title: "PCMC Project (Government)",
+      location: "Pune, Maharashtra",
       capacity: "5 KW",
       type: "residential",
       completion: "2024",
@@ -17,8 +19,9 @@ const ProjectsSection: React.FC = () => {
     },
     {
       id: 2,
-      image: "https://images.pexels.com/photos/9875408/pexels-photo-9875408.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=2",
-      location: "Bangalore, Karnataka",
+      image: projectImages.residential.Mukundam,
+      title: "Mukundam Apartments",
+      location: "Mumbai, Maharashtra",
       capacity: "7 KW",
       type: "residential",
       completion: "2024",
@@ -26,8 +29,9 @@ const ProjectsSection: React.FC = () => {
     },
     {
       id: 3,
-      image: "https://images.pexels.com/photos/9875410/pexels-photo-9875410.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=2",
-      location: "Delhi, NCR",
+      image: projectImages.commercial.Site35_KorumMall,
+      title: "Korum Mall Commercial",
+      location: "Thane, Maharashtra",
       capacity: "25 KW",
       type: "commercial",
       completion: "2023",
@@ -35,8 +39,9 @@ const ProjectsSection: React.FC = () => {
     },
     {
       id: 4,
-      image: "https://images.pexels.com/photos/9875414/pexels-photo-9875414.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=2",
-      location: "Pune, Maharashtra",
+      image: projectImages.residential.korum,
+      title: "Korum Residential Block",
+      location: "Thane, Maharashtra",
       capacity: "6 KW",
       type: "residential",
       completion: "2024",
@@ -44,8 +49,9 @@ const ProjectsSection: React.FC = () => {
     },
     {
       id: 5,
-      image: "https://images.pexels.com/photos/9875393/pexels-photo-9875393.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=2",
-      location: "Hyderabad, Telangana",
+      image: projectImages.residential.juhu,
+      title: "Juhu Beach Villas",
+      location: "Mumbai, Maharashtra",
       capacity: "4 KW",
       type: "residential",
       completion: "2024",
@@ -53,10 +59,11 @@ const ProjectsSection: React.FC = () => {
     },
     {
       id: 6,
-      image: "https://images.pexels.com/photos/9875411/pexels-photo-9875411.jpeg?auto=compress&cs=tinysrgb&w=800&h=600&dpr=2",
-      location: "Chennai, Tamil Nadu",
+      image: projectImages.commercial.Site20_PunjabRice,
+      title: "Punjab Rice Commercial",
+      location: "Punjab",
       capacity: "8 KW",
-      type: "residential",
+      type: "commercial",
       completion: "2023",
       savings: "₹13,500/month"
     }
@@ -74,46 +81,54 @@ const ProjectsSection: React.FC = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
             Our <span className="bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">Completed Projects</span>
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          {/* <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
             Discover how we've transformed homes and businesses across India with our zero-investment solar installations.
-          </p>
+          </p> */}
         </div>
 
-        {/* Filter Buttons */}
-        <div className="flex justify-center mb-12">
-          <div className="inline-flex bg-gray-100 dark:bg-gray-800 rounded-xl p-1">
-            <button
-              onClick={() => setFilter('all')}
-              className={`px-6 py-3 rounded-lg font-semibold transition-all duration-200 ${
-                filter === 'all' 
-                  ? 'bg-gradient-to-r from-blue-600 to-green-600 text-white shadow-lg' 
-                  : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
-              }`}
-            >
-              All Projects
-            </button>
-            <button
-              onClick={() => setFilter('residential')}
-              className={`px-6 py-3 rounded-lg font-semibold transition-all duration-200 ${
-                filter === 'residential' 
-                  ? 'bg-gradient-to-r from-blue-600 to-green-600 text-white shadow-lg' 
-                  : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
-              }`}
-            >
-              Residential
-            </button>
-            <button
-              onClick={() => setFilter('commercial')}
-              className={`px-6 py-3 rounded-lg font-semibold transition-all duration-200 ${
-                filter === 'commercial' 
-                  ? 'bg-gradient-to-r from-blue-600 to-green-600 text-white shadow-lg' 
-                  : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
-              }`}
-            >
-              Commercial
-            </button>
-          </div>
-        </div>
+    {/* Filter Buttons */}
+{/* Filter Buttons */}
+<div className="flex justify-center mb-12">
+  <div className="inline-flex bg-gray-100 dark:bg-gray-800 rounded-xl p-1">
+    {/* All */}
+    <button
+      onClick={() => setFilter('all')}
+      className={`px-6 py-3 rounded-lg font-semibold transition-all duration-200 ${
+        filter === 'all' 
+          ? 'bg-gradient-to-r from-blue-600 to-green-600 text-white shadow-lg' 
+          : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
+      }`}
+    >
+      All
+    </button>
+
+    {/* Residential */}
+    <button
+      onClick={() => setFilter('residential')}
+      className={`px-6 py-3 rounded-lg font-semibold transition-all duration-200 ${
+        filter === 'residential' 
+          ? 'bg-gradient-to-r from-blue-600 to-green-600 text-white shadow-lg' 
+          : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
+      }`}
+    >
+      Residential
+    </button>
+
+    {/* Commercial */}
+    <button
+      onClick={() => setFilter('commercial')}
+      className={`px-6 py-3 rounded-lg font-semibold transition-all duration-200 ${
+        filter === 'commercial' 
+          ? 'bg-gradient-to-r from-blue-600 to-green-600 text-white shadow-lg' 
+          : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
+      }`}
+    >
+      Commercial
+    </button>
+  </div>
+</div>
+
+
 
         {/* Projects Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -143,9 +158,12 @@ const ProjectsSection: React.FC = () => {
                     <span className="text-sm font-medium">{project.location}</span>
                   </div>
                   
-                  <h3 className="text-xl font-bold mb-4">
-                    {project.capacity} Solar Installation
+                  <h3 className="text-xl font-bold mb-1">
+                    {project.title}
                   </h3>
+                  <div className="text-base font-medium mb-3 opacity-80">
+                    {project.capacity} Solar Installation
+                  </div>
 
                   {/* Project Details */}
                   {hoveredProject === project.id && (

@@ -14,10 +14,12 @@ const HeroSection: React.FC = () => {
           Go Solar, Infinite Savings
         </h2>
         <div className="flex gap-10">
-          <Button
+          <a href="/about">
+            <Button
             title="Know More"
             className="pointer-events-auto bg-primary rounded-full hover:scale-105 transition-transform"
           />
+          </a>
           <Button
             title="Contact US"
             className="pointer-events-auto bg-transparent text-white border-2 hover:bg-white hover:text-black rounded-full hover:scale-105 transition-transform"
