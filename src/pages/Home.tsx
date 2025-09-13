@@ -5,14 +5,15 @@ import WhyChooseSection from "../components/WhyChooseSection";
 //import Home1 from "../assets/images/home1.jpg";
 //import Home1 from "../assets/images/home2.png";
 import Home1 from "../assets/images/home3.png";
+import ProjectsSection from "../components/ProjectsSection";
 
 const HomePage: React.FC = () => {
   return (
     <>
       <HeroSection />
       <div className="w-full bg-[#f7f9fb] pt-16 pb-10 flex justify-center items-center flex-col">
-        <h1 className="text-2 md:text-4xl text-black mb-2 drop-shadow-lg pointer-events-auto text-center ">Save On Electricity Bills</h1>
-        <p className="text-black text-center text-lg py-5 w-[50%]">
+        <h1 className="text-2 text-3xl md:text-4xl text-black mb-2 drop-shadow-lg pointer-events-auto text-center ">Save On Electricity Bills</h1>
+        <p className="text-black text-center text-lg py-5 w-[70%] md:w-[50%]">
           Generate your own clean energy from the sun for free with solar. Add
           Powerwall to store your energy for use anytime you need it. Tax
           incentives and flexible financing options may be available to help you
@@ -22,6 +23,7 @@ const HomePage: React.FC = () => {
       </div>
       <img src={Home1} alt="Home Images" className="w-full h-full"/>
       <WhyChooseSection />
+      <ProjectsSection/>
     </>
   );
 };
