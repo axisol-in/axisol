@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { Menu, X, Sun, Moon, ChevronDown } from "lucide-react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { useTheme } from "../context/ThemeContext";
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isThemeDropdownOpen, setIsThemeDropdownOpen] = useState(false);
   const { isDark, toggleTheme } = useTheme();
+  const location = useLocation();
 
   const menuItems = [
     { name: "Home", href: "/" },
@@ -39,7 +40,7 @@ const Header: React.FC = () => {
     els.forEach((el) => observer.observe(el));
 
     return () => observer.disconnect();
-  }, []);
+  }, [location.pathname]);
 
   return (
     <>
