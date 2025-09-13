@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Header from "./components/Header";
 import Chatbot from "./components/Chatbot";
+import Footer from "./components/Footer";
 
 import { ThemeProvider } from "./context/ThemeContext";
 
@@ -19,7 +20,7 @@ const AppContent: React.FC = () => {
         <div className="flex justify-center">
           <Header />
         </div>
-        
+
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
@@ -28,6 +29,7 @@ const AppContent: React.FC = () => {
           <Route path="/blogs" element={<BlogsPage />} />
         </Routes>
         <Chatbot />
+        <Footer />
       </div>
     </BrowserRouter>
   );
