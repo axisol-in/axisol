@@ -1,5 +1,8 @@
 import Button from "./ui/Button";
 
+import HeroVideo from "../assets/videos/hero-video.mp4";
+//import HeroVideo from "https://digitalassets.tesla.com/tesla-contents/video/upload/f_auto,q_auto/Solar-Panel-Hero-Desktop.mp4";
+
 const HeroSection: React.FC = () => {
   return (
     <section className="w-screen h-screen">
@@ -24,7 +27,7 @@ const HeroSection: React.FC = () => {
 
       <div className="relative w-full h-full">
         <video
-          src="https://digitalassets.tesla.com/tesla-contents/video/upload/f_auto,q_auto/Solar-Panel-Hero-Desktop.mp4"
+          src={HeroVideo}
           autoPlay
           loop
           muted

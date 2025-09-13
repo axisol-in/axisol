@@ -2,16 +2,18 @@ import React from "react";
 import HeroSection from "../components/HeroSection";
 import WhyChooseSection from "../components/WhyChooseSection";
 
-//import Home1 from "../assets/images/home1.jpg";
-//import Home1 from "../assets/images/home2.png";
-import Home1 from "../assets/images/home3.png";
+import Home1 from "../assets/images/home1.png";
+import Home2 from "../assets/images/home2.png";
+
 
 const HomePage: React.FC = () => {
   return (
     <>
       <HeroSection />
       <div className="w-full bg-[#f7f9fb] pt-16 pb-10 flex justify-center items-center flex-col">
-        <h1 className="text-2 md:text-4xl text-black mb-2 drop-shadow-lg pointer-events-auto text-center ">Save On Electricity Bills</h1>
+        <h1 className="text-2 md:text-4xl text-black mb-2 drop-shadow-lg pointer-events-auto text-center ">
+          Save On Electricity Bills
+        </h1>
         <p className="text-black text-center text-lg py-5 w-[50%]">
           Generate your own clean energy from the sun for free with solar. Add
           Powerwall to store your energy for use anytime you need it. Tax
@@ -20,8 +22,9 @@ const HomePage: React.FC = () => {
           you can also reduce your reliance on traditional energy sources.
         </p>
       </div>
-      <img src={Home1} alt="Home Images" className="w-full h-full"/>
+      <img src={Home1} alt="Home 1 Image" className="w-full" />
       <WhyChooseSection />
+      <img src={Home2} alt="Home 2 Image" className="w-full" />
     </>
   );
 };
