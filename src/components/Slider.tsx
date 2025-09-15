@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
+"use client";
+import React, { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
-import Slider1 from "../assets/images/slider1.png";
-import Slider2 from "../assets/images/slider2.png";
-import Slider3 from "../assets/images/slider3.png";
+import Slider1 from "../assets/images/slider1.webp";
+import Slider2 from "../assets/images/slider2.webp";
+import Slider3 from "../assets/images/slider3.webp";
 
 type Slide = {
   id: number;
@@ -33,81 +35,53 @@ const slides: Slide[] = [
 ];
 
 const Slider: React.FC = () => {
-  const [currentSlide, setCurrentSlide] = useState(0);
+  const sectionRef = useRef<HTMLDivElement | null>(null);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 5000);
+  // scroll progress inside the section
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end end"],
+  });
 
-    return () => clearInterval(interval);
-  }, []);
-
-  const goToSlide = (index: number) => {
-    setCurrentSlide(index);
-  };
+  // move horizontally according to vertical scroll
+  const x = useTransform(
+    scrollYProgress,
+    [0, 1],
+    ["0%", `-${(slides.length - 1) * 100}%`]
+  );
 
   return (
-    <section className="relative h-screen w-screen overflow-hidden">
-      {/* Slides */}
-      {slides.map((slide, index) => (
-        <div
-          key={slide.id}
-          className={`absolute inset-0 h-screen w-screen flex items-end justify-center transition-opacity duration-1000 ${
-            index === currentSlide ? "opacity-100" : "opacity-0"
-          }`}
-        >
-          {/* Background Image */}
-          <div
-            className="absolute inset-0 bg-cover bg-center sm:bg-top"
-            style={{ backgroundImage: `url(${slide.image})` }}
-          />
-          {/* Dark Overlay */}
-          <div className="absolute inset-0 bg-black/40" />
-          <div className="w-auto mb-10 px-5 relative z-10">
-            <h1 className="w-full text-white text-xl md:text-4xl mb-2 text-left text-wrap">
-              {slide.title}
-            </h1>
-            <p className="text-gray-300 text-sm md:text-xl leading-relaxed text-left">
-              {slide.text}
-            </p>
-          </div>
-        </div>
-      ))}
-
-      {/* Navigation Dots */}
-      <div className="absolute bottom-5 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
-        {slides.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => goToSlide(index)}
-            className={`w-3 h-3 rounded-full transition-colors duration-300 ${
-              index === currentSlide ? "bg-white" : "bg-white/50"
-            }`}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
+    <section ref={sectionRef} className="relative h-[600vh]">
+      {/* sticky container that follows scroll */}
+      <div className="sticky top-0 h-screen w-screen overflow-hidden">
+        <motion.div style={{ x }} className="flex h-full w-[100vw]">
+          {slides.map((slide) => {
+            return (
+              <div
+                key={slide.id}
+                className="h-screen w-screen flex items-end justify-center relative flex-shrink-0"
+              >
+                {/* Background Image */}
+                <div
+                  className="absolute inset-0 bg-cover bg-center sm:bg-top"
+                  style={{ backgroundImage: `url(${slide.image})` }}
+                />
+                {/* Dark Overlay */}
+                <div className="absolute inset-0 bg-black/40" />
+                {/* Text */}
+                <div className="w-auto mb-10 px-5 relative z-10">
+                  <h1 className="text-white text-xl md:text-4xl mb-2 text-left">
+                    {slide.title}
+                  </h1>
+                  <p className="text-gray-300 text-sm md:text-xl leading-relaxed text-left">
+                    {slide.text}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
+        </motion.div>
       </div>
-
-      {/* Navigation Arrows */}
-      <button
-        onClick={() => goToSlide(currentSlide === 0 ? slides.length - 1 : currentSlide - 1)}
-        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black/30 text-white p-2 rounded-full hover:bg-black/50 transition-colors duration-300 z-20"
-        aria-label="Previous slide"
-      >
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-        </svg>
-      </button>
-      <button
-        onClick={() => goToSlide((currentSlide + 1) % slides.length)}
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black/30 text-white p-2 rounded-full hover:bg-black/50 transition-colors duration-300 z-20"
-        aria-label="Next slide"
-      >
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-        </svg>
-      </button>
     </section>
   );
 };

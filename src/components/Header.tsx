@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { NavLink } from "react-router-dom";
+import logo from "../assets/logos/logo.png";
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -9,7 +10,7 @@ const Header: React.FC = () => {
   // Scroll detection
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 30);
+      setScrolled(window.scrollY > window.innerHeight - 20);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -42,10 +43,7 @@ const Header: React.FC = () => {
           {/* Logo */}
           <NavLink to="/">
             <div className="flex items-center space-x-2">
-              <img
-                className="h-7"
-                src="https://axisol.in/wp-content/uploads/2024/12/cropped-cropped-Axisol-Logo-1-300x134.png"
-              />
+              <img className="h-7" src={logo} />
               <span className="text-2xl font-bold text-primary dark:text-bright-orange">
                 AXISOL
               </span>
@@ -54,41 +52,19 @@ const Header: React.FC = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center lg:space-x-12 md:space-x-8">
-            <NavLink
-              key={"Home"}
-              to={"/"}
-              className="hover:text-primary dark:hover:text-bright-orange transition-colors"
-            >
-              Home
-            </NavLink>
-            <NavLink
-              key={"Projects"}
-              to={"/projects"}
-              className="hover:text-primary dark:hover:text-bright-orange transition-colors"
-            >
-              Projects
-            </NavLink>
-            <NavLink
-              key={"Blogs"}
-              to={"/blogs"}
-              className="hover:text-primary dark:hover:text-bright-orange transition-colors"
-            >
-              Blogs
-            </NavLink>
-            <NavLink
-              key={"About Us"}
-              to={"/about"}
-              className="hover:text-primary dark:hover:text-bright-orange transition-colors"
-            >
-              About Us
-            </NavLink>
-            <NavLink
-              key={"Contact Us"}
-              to={"/contact"}
-              className="hover:text-primary dark:hover:text-bright-orange transition-colors"
-            >
-              Contact Us
-            </NavLink>
+            {menuItems.map((item) => (
+              <NavLink
+                key={item.name}
+                to={item.href}
+                className={({ isActive }) =>
+                  `hover:text-primary dark:hover:text-bright-orange transition-colors ${
+                    isActive ? "text-primary dark:text-bright-orange" : ""
+                  }`
+                }
+              >
+                {item.name}
+              </NavLink>
+            ))}
           </nav>
         </div>
       </header>

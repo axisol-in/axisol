@@ -4,17 +4,17 @@ import HeroSection from "../components/HeroSection";
 import WhyChooseSection from "../components/WhyChooseSection";
 import Slider from "../components/Slider";
 
-import Home1 from "../assets/images/home1.png";
+import Home1 from "../assets/images/home1.webp";
 
 const HomePage: React.FC = () => {
   return (
     <>
       <HeroSection />
       <div className="w-full bg-[#f7f9fb] pt-16 pb-10 flex justify-center items-center flex-col">
-        <h1 className="text-2 md:text-4xl text-black mb-2 drop-shadow-lg pointer-events-auto text-center ">
+        <h1 className="text-2xl md:text-4xl text-black mb-6 ">
           Save On Electricity Bills
         </h1>
-        <p className="text-black text-center text-lg py-5 w-[50%]">
+        <p className="text-black py-5  px-8 md:px-16 max-w-3xl text-xl leading-relaxed text-justify md:text-center">
           Generate your own clean energy from the sun for free with solar. Add
           Powerwall to store your energy for use anytime you need it. Tax
           incentives and flexible financing options may be available to help you

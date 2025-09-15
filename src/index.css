@@ -10,15 +10,14 @@
   outline: none;
   box-sizing: border-box;
   scroll-behavior: smooth;
-scrollbar-width: none;
-
+  scrollbar-width: none;
 }
 
 body {
   scrollbar-width: 0;
-  -ms-overflow-style: none; /* Internet Explorer and Edge */
+  -ms-overflow-style: none;
 }
 
 body::-webkit-scrollbar {
-  display: none; /* Safari and Chrome */
+  display: none;
 }
