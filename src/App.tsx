@@ -12,6 +12,7 @@ import AboutPage from "./pages/About";
 import ProjectsPage from "./pages/Projects";
 import ContactPage from "./pages/Contact";
 import BlogsPage from "./pages/Blogs";
+import TandC from "./pages/TandC";
 
 const AppContent: React.FC = () => {
   return (
@@ -27,6 +28,8 @@ const AppContent: React.FC = () => {
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/blogs" element={<BlogsPage />} />
+          <Route path="/terms-of-use" element={<TandC title="Terms & Conditions" />} />
+          <Route path="/privacy-policy" element={<TandC title="Privacy Policy" />} />
         </Routes>
         <Chatbot />
         <Footer />
