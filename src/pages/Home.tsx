@@ -5,6 +5,7 @@ import WhyChooseSection from "../components/WhyChooseSection";
 import Slider from "../components/Slider";
 
 import Home1 from "../assets/images/home1.webp";
+import Location from "../components/Location";
 
 const HomePage: React.FC = () => {
   return (
@@ -25,6 +26,7 @@ const HomePage: React.FC = () => {
       <img src={Home1} alt="Home 1 Image" className="w-full" />
       <WhyChooseSection />
       <Slider />
+      <Location/>
     </>
   );
 };

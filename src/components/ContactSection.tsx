@@ -22,6 +22,7 @@ const contactSchema = z.object({
   phone: z.string().regex(/^(\+91)?\d{10}$/, "Must be a valid 10-digit number"),
   location: z.string(),
   message: z.string().optional(),
+  bill: z.string().min(1, "Please enter your monthly bill amount"),
 });
 
 type ContactFormValues = z.infer<typeof contactSchema>;
@@ -165,7 +166,7 @@ const ContactSection: React.FC = () => {
               </div>
               <div>
                 <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
-                  Get Free Consultation
+                  Send us a message
                 </h3>
                 <p className="text-gray-600 dark:text-gray-300">
                   Fill out the form and we'll contact you within 24 hours
@@ -231,6 +232,21 @@ const ContactSection: React.FC = () => {
                     className="w-full pl-12 pr-4 py-4 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
                     placeholder="City, State"
                     {...register("location")}
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                  Your Monthly Electricity Bill
+                </label>
+                <div className="relative">
+                  <Shield className="absolute left-3 top-4 text-gray-400 w-5 h-5" />
+                  <input
+                    type="number"
+                    className="w-full pl-12 pr-4 py-4 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+                    placeholder="e.g. 2500"
+                    {...register("bill")}
                   />
                 </div>
               </div>
@@ -313,84 +329,6 @@ const ContactSection: React.FC = () => {
                 </div>
               </div>
             ))}
-          </div>
-        </div>
-
-        {/* Team Section */}
-        <div>
-          <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-              Meet Our{" "}
-              <span className="bg-gradient-to-r from-blue-600 to-green-600 bg-clip-text text-transparent">
-                Expert Team
-              </span>
-            </h3>
-            <p className="text-lg text-gray-600 dark:text-gray-300">
-              Our certified professionals are here to help you with all your
-              solar needs
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {teamMembers.map((member, index) => (
-              <div
-                key={index}
-                className="bg-white dark:bg-gray-900 rounded-2xl p-6 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 dark:border-gray-700 text-center"
-              >
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  className="w-24 h-24 rounded-full object-cover mx-auto mb-4 ring-4 ring-blue-100 dark:ring-blue-900"
-                />
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">
-                  {member.name}
-                </h3>
-                <p className="text-blue-600 dark:text-blue-400 font-medium mb-2">
-                  {member.position}
-                </p>
-                <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">
-                  {member.speciality}
-                </p>
-
-                <div className="space-y-2">
-                  <div className="flex items-center justify-center space-x-2 text-sm text-gray-600 dark:text-gray-300">
-                    <Phone size={16} />
-                    <span>{member.phone}</span>
-                  </div>
-                  <div className="flex items-center justify-center space-x-2 text-sm text-gray-600 dark:text-gray-300">
-                    <Mail size={16} />
-                    <span>{member.email}</span>
-                  </div>
-                </div>
-
-                <button className="mt-4 w-full py-2 px-4 bg-gradient-to-r from-blue-500 to-green-500 text-white rounded-lg font-medium hover:from-blue-600 hover:to-green-600 transform hover:scale-105 transition-all duration-200 text-sm">
-                  Contact {member.name.split(" ")[0]}
-                </button>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Emergency Support */}
-        <div className="mt-20 bg-gradient-to-r from-red-500 to-orange-500 rounded-3xl p-8 text-center text-white">
-          <div className="flex justify-center mb-4">
-            <HeadphonesIcon className="w-16 h-16" />
-          </div>
-          <h3 className="text-2xl font-bold mb-4">24/7 Emergency Support</h3>
-          <p className="text-lg mb-6 opacity-90">
-            Technical issues? System not working? Our emergency support team is
-            available round the clock.
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6">
-            <div className="flex items-center space-x-2">
-              <Phone className="w-5 h-5" />
-              <span className="font-bold text-lg">
-                Emergency: +91 99999 99999
-              </span>
-            </div>
-            <button className="px-8 py-3 bg-white text-red-600 rounded-xl font-semibold hover:bg-gray-100 transform hover:scale-105 transition-all duration-200">
-              Call Now
-            </button>
           </div>
         </div>
       </div>

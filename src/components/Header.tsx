@@ -31,27 +31,29 @@ const Header: React.FC = () => {
           ${scrolled ? "bg-white/90 dark:bg-black/80" : "bg-transparent"}
         `}
       >
-        <div className="flex justify-between items-center h-16">
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden p-2 rounded-md"
-          >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
+        <div className="flex flex-col md:flex-row items-center justify-center h-16 w-full">
+          <div className="flex items-center justify-center w-full md:w-auto">
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              className="md:hidden p-2 rounded-md absolute left-4 top-1/2 transform -translate-y-1/2"
+            >
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
 
-          {/* Logo */}
-          <NavLink to="/">
-            <div className="flex items-center space-x-2">
-              <img className="h-7" src={logo} />
-              <span className="text-2xl font-bold text-primary dark:text-bright-orange">
-                AXISOL
-              </span>
-            </div>
-          </NavLink>
+            {/* Logo and Text Centered */}
+            <NavLink to="/" className="mx-auto">
+              <div className="flex items-center justify-center space-x-2">
+                <img className="h-7" src={logo} />
+                <span className="text-2xl font-bold text-primary dark:text-bright-orange">
+                  AXISOL
+                </span>
+              </div>
+            </NavLink>
+          </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center lg:space-x-12 md:space-x-8">
+          <nav className="hidden md:flex items-center lg:space-x-12 md:space-x-8 ml-auto">
             {menuItems.map((item) => (
               <NavLink
                 key={item.name}
