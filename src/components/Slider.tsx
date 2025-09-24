@@ -23,13 +23,13 @@ const slides: Slide[] = [
   {
     id: 2,
     image: Slider2,
-    title: "Quick Installation",
-    text: "Professional installation completed in just 1-2 days with minimal disruption.",
+    title: "21+ MW",
+    text: "Overall project experience",
   },
   {
     id: 3,
     image: Slider3,
-    title: "50,000+ Satisfied Customers",
+    title: "100+ Satisfied Customers",
     text: "Join thousands of homeowners already enjoying free electricity and reduced bills.",
   },
 ];

@@ -1,22 +1,39 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from "react";
+import {
+  PencilRuler,
+  BadgeCheck,
+  Lightbulb,
+  ShoppingCart,
+  Globe,
+  ShieldCheck,
+  MessageCircle,
+  Gauge,
+  Smartphone,
+} from "lucide-react";
 
 const About: React.FC = () => {
   const animatedScrollRefs = useRef<(HTMLElement | null)[]>([]);
   const timelineRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    const allAnimatedElements = [...animatedScrollRefs.current.filter(el => el), timelineRef.current].filter(el => el);
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-            }
+    const allAnimatedElements = [
+      ...animatedScrollRefs.current.filter((el) => el),
+      timelineRef.current,
+    ].filter((el) => el);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+          }
         });
-    }, {
-        threshold: 0.2
-    });
-    allAnimatedElements.forEach(el => {
-        if (el) observer.observe(el);
+      },
+      { threshold: 0.2 }
+    );
+
+    allAnimatedElements.forEach((el) => {
+      if (el) observer.observe(el);
     });
 
     return () => {
@@ -24,7 +41,154 @@ const About: React.FC = () => {
     };
   }, []);
 
-  const pageStyles = `
+  const addRef = (el: HTMLElement | null) => {
+    if (el && !animatedScrollRefs.current.includes(el)) {
+      animatedScrollRefs.current.push(el);
+    }
+  };
+
+  return (
+      <div className="min-h-screen bg-black text-white">
+        <style>{pageStyles}</style>
+        <main>
+        {/* Hero Section */}
+        <section id="hero" className="hero">
+          <div className="container flex justify-center">
+            <div className="hero-content animate-on-scroll" ref={addRef}>
+              <h1 className="text-center">About <span className="text-primary">AXISOL</span></h1>
+              <p className="text-left">
+                Axisol was incorporated with the objective of providing best in
+                class Rooftop EPC solutions India, following the best global
+                practices and forging alliances with leading global players in
+                the domain.
+              </p>
+              <div className="button-group">
+                {/* View Brochure Button (opens new tab) */}
+                <a
+                  href="/brochure.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-primary"
+                >
+                  View our society brochure
+                </a>
+                <a href="#cta" className="btn btn-secondary">
+                  Contact Us
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Values Section */}
+          <section id="values">
+            <div className="container text-center">
+              <h2 className="animate-on-scroll" ref={addRef}>
+                Our Unique Value Propositions
+              </h2>
+              <p className="section-subtitle animate-on-scroll" ref={addRef}>
+                Discover the pillars that set Axisol apart in solar EPC solutions.
+              </p>
+              <div className="values-grid grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 mt-8">
+                <div className="value-card animate-on-scroll p-6 rounded-xl bg-[#111]" ref={addRef} style={{ transitionDelay: "100ms" }}>
+                  <PencilRuler size={40} className="mx-auto mb-4 text-yellow-400" />
+                  <h3 className="font-semibold mb-2">In-House Design & Engineering</h3>
+                  <p>Expert team for custom, high-performance solar solutions.</p>
+                </div>
+                <div className="value-card animate-on-scroll p-6 rounded-xl bg-[#111]" ref={addRef} style={{ transitionDelay: "200ms" }}>
+                  <BadgeCheck size={40} className="mx-auto mb-4 text-yellow-400" />
+                  <h3 className="font-semibold mb-2">Transparent Product Selection</h3>
+                  <p>Clear, unbiased options for Tier 1 products—no hidden agendas.</p>
+                </div>
+                <div className="value-card animate-on-scroll p-6 rounded-xl bg-[#111]" ref={addRef} style={{ transitionDelay: "300ms" }}>
+                  <Lightbulb size={40} className="mx-auto mb-4 text-yellow-400" />
+                  <h3 className="font-semibold mb-2">Innovative Mounting Solutions</h3>
+                  <p>Creative designs to maximize space and power generation.</p>
+                </div>
+                <div className="value-card animate-on-scroll p-6 rounded-xl bg-[#111]" ref={addRef} style={{ transitionDelay: "400ms" }}>
+                  <ShoppingCart size={40} className="mx-auto mb-4 text-yellow-400" />
+                  <h3 className="font-semibold mb-2">Direct Procurement</h3>
+                  <p>Efficient sourcing for best pricing and quality assurance.</p>
+                </div>
+                <div className="value-card animate-on-scroll p-6 rounded-xl bg-[#111]" ref={addRef} style={{ transitionDelay: "500ms" }}>
+                  <Globe size={40} className="mx-auto mb-4 text-yellow-400" />
+                  <h3 className="font-semibold mb-2">Web Portal & Mobile Application</h3>
+                  <p>Track project progress and access resources anytime, anywhere.</p>
+                </div>
+                <div className="value-card animate-on-scroll p-6 rounded-xl bg-[#111]" ref={addRef} style={{ transitionDelay: "600ms" }}>
+                  <ShieldCheck size={40} className="mx-auto mb-4 text-yellow-400" />
+                  <h3 className="font-semibold mb-2">5 Years EPC Support</h3>
+                  <p>Comprehensive warranty and maintenance for peace of mind.</p>
+                </div>
+                <div className="value-card animate-on-scroll p-6 rounded-xl bg-[#111]" ref={addRef} style={{ transitionDelay: "700ms" }}>
+                  <MessageCircle size={40} className="mx-auto mb-4 text-yellow-400" />
+                  <h3 className="font-semibold mb-2">Central Complaint Handling System</h3>
+                  <p>Streamlined support for quick resolution of any issues.</p>
+                </div>
+                <div className="value-card animate-on-scroll p-6 rounded-xl bg-[#111]" ref={addRef} style={{ transitionDelay: "800ms" }}>
+                  <Gauge size={40} className="mx-auto mb-4 text-yellow-400" />
+                  <h3 className="font-semibold mb-2">Net/Gross Metering Assistance</h3>
+                  <p>Expert help for seamless integration with local utilities.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+        {/* Team Section */}
+        <section id="team">
+          <div className="container text-center">
+            <h2 className="animate-on-scroll" ref={addRef}>
+              The Architects of Your Savings
+            </h2>
+            <div className="team-grid">
+              <div className="team-card animate-on-scroll flex flex-col items-center text-center" ref={addRef} style={{ transitionDelay: "100ms" }}>
+                <img
+                  src="https://storage.googleapis.com/gemini-prod-us-west1-4205090333/673907c1-026d-49d7-bf6f-b1e6a147b97e"
+                  alt="Dhaval Mehta"
+                  className="team-avatar"
+                />
+                <h3>Dhaval Mehta</h3>
+                <div className="role">CEO</div>
+                <p>
+                  Leading AXISOL's strategic vision with extensive experience in
+                  the renewable energy sector.
+                </p>
+              </div>
+              <div className="team-card animate-on-scroll flex flex-col items-center text-center" ref={addRef} style={{ transitionDelay: "200ms" }}>
+                <img
+                  src="https://storage.googleapis.com/gemini-prod-us-west1-4205090333/e1a5f4f8-11f2-45a2-97b7-6f81c9b609c1"
+                  alt="Sunny Dani"
+                  className="team-avatar"
+                />
+                <h3>Sunny Dani</h3>
+                <div className="role">CMO</div>
+                <p>
+                  Driving market expansion and ensuring every client receives
+                  world-class service and support.
+                </p>
+              </div>
+              <div className="team-card animate-on-scroll flex flex-col items-center text-center" ref={addRef} style={{ transitionDelay: "300ms" }}>
+                <img
+                  src="https://storage.googleapis.com/gemini-prod-us-west1-4205090333/a114f6b2-65a2-4a41-b845-8f6443c0594a"
+                  alt="Bhavin Mehta"
+                  className="team-avatar"
+                />
+                <h3>Bhavin Mehta</h3>
+                <div className="role">CTO</div>
+                <p>
+                  Bringing technical expertise and operational excellence to
+                  ensure every project exceeds expectations.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  );
+};
+
+const pageStyles = `
     :root {
         --bg-color: #080808;
         --card-bg-color: #111111;
@@ -148,132 +312,5 @@ const About: React.FC = () => {
     }
   `;
 
-  const addRef = (el: HTMLElement | null) => {
-    if (el && !animatedScrollRefs.current.includes(el)) {
-      animatedScrollRefs.current.push(el);
-    }
-  };
-
-  return (
-    <>
-      <style>{pageStyles}</style>
-      <main>
-        {/* Hero Section */}
-        <section id="hero" className="hero">
-            <div className="container">
-                <div className="hero-content animate-on-scroll" ref={addRef}>
-                    <h1>About AXISOL</h1>
-                    <p>Pioneering India's clean energy future with high-performance solar solutions for housing societies and businesses.</p>
-                    <div className="button-group">
-                       <a href="#story" className="btn btn-primary">Our Story</a>
-                       <a href="#cta" className="btn btn-secondary">Contact Us</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        {/* Story Section */}
-        <section id="story">
-            <div className="container">
-                <div className="story-grid">
-                    <div className="animate-on-scroll" ref={addRef}>
-                        <h2>Our Founding Vision</h2>
-                        <p className="section-subtitle" style={{textAlign:'left', marginLeft:0}}>Forging an energy-independent India.</p>
-                    </div>
-                    <div className="story-content animate-on-scroll" ref={addRef}>
-                        <h3>The Genesis of AXISOL</h3>
-                        <p>AXISOL was founded to push every single day to achieve India's mission of 500 gigawatts (GW) of renewable energy by 2030. We are dedicated to working with clients to adopt the most cost-effective methods, ensuring the viability of your investment in clean energy. Our mission is to make this transition seamless by providing end-to-end project execution, from planning to commissioning.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        {/* Values Section */}
-        <section id="values">
-            <div className="container">
-                <h2 className="animate-on-scroll" ref={addRef}>The Pillars of Our Service</h2>
-                <p className="section-subtitle animate-on-scroll" ref={addRef}>Our core principles guide every project we undertake, guaranteeing performance, transparency, and value for your investment.</p>
-                <div className="values-grid">
-                    <div className="value-card animate-on-scroll" ref={addRef} style={{transitionDelay: '100ms'}}>
-                        <i className="ph-light ph-chart-line-up"></i>
-                        <h3>High Performance</h3>
-                        <p>We guarantee a minimum plant performance ratio of 75% through expert engineering and high-quality installation.</p>
-                    </div>
-                    <div className="value-card animate-on-scroll" ref={addRef} style={{transitionDelay: '200ms'}}>
-                        <i className="ph-light ph-handshake"></i>
-                        <h3>Transparency</h3>
-                        <p>We provide informed options and help you choose the best-fit Tier 1 products, rather than pushing favored brands.</p>
-                    </div>
-                    <div className="value-card animate-on-scroll" ref={addRef} style={{transitionDelay: '300ms'}}>
-                        <i className="ph-light ph-wrench"></i>
-                        <h3>Workmanship Support</h3>
-                        <p>Every installation is covered by a 5-year EPC and workmanship support plan, ensuring hassle-free maintenance.</p>
-                    </div>
-                    <div className="value-card animate-on-scroll" ref={addRef} style={{transitionDelay: '400ms'}}>
-                        <i className="ph-light ph-lightbulb"></i>
-                        <h3>Innovative Solutions</h3>
-                        <p>Our in-house design team provides innovative installation solutions that maximize your use of space and power generation.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        {/* Timeline Section */}
-        <section id="timeline">
-            <div className="container">
-                <h2 className="animate-on-scroll" ref={addRef}>Our Journey & Milestones</h2>
-                <p className="section-subtitle animate-on-scroll" ref={addRef}>Our experience is measured by our success and the trust our clients place in us.</p>
-                <div className="timeline" ref={timelineRef}>
-                    <div className="timeline-line"><div className="timeline-line-progress"></div></div>
-                    <div className="timeline-item left" ref={addRef}><div className="timeline-content"><time>7+ Years</time><h3>Excellence in Execution</h3><p>With over seven years in operation, we have a proven track record of excellence and astute project planning.</p></div></div>
-                    <div className="timeline-item right" ref={addRef}><div className="timeline-content"><time>100+ Customers</time><h3>Building Happy Communities</h3><p>We have served over 100 happy customers, constantly innovating to add value to their investments.</p></div></div>
-                    <div className="timeline-item left" ref={addRef}><div className="timeline-content"><time>21 MW+</time><h3>Proven Track Record</h3><p>We have successfully commissioned over 21 MW of solar projects across a diverse range of verticals.</p></div></div>
-                    <div className="timeline-item right" ref={addRef}><div className="timeline-content"><time>Future Goal</time><h3>Supporting India's Mission</h3><p>We continue to align with India's national goal of achieving 500 GW of renewable energy by 2030.</p></div></div>
-                </div>
-            </div>
-        </section>
-
-        {/* Team Section */}
-        <section id="team">
-            <div className="container">
-                <h2 className="animate-on-scroll" ref={addRef}>The Architects of Your Savings</h2>
-                <p className="section-subtitle animate-on-scroll" ref={addRef}>Meet the multidisciplinary experts dedicated to building India's most efficient and reliable solar solutions.</p>
-                <div className="team-grid">
-                    <div className="team-card animate-on-scroll" ref={addRef} style={{transitionDelay: '100ms'}}>
-                        <img src="https://storage.googleapis.com/gemini-prod-us-west1-4205090333/673907c1-026d-49d7-bf6f-b1e6a147b97e" alt="Dhaval Mehta" className="team-avatar"/>
-                        <h3>Dhaval Mehta</h3><div className="role">CEO</div><p>Leading AXISOL's strategic vision with extensive experience in the renewable energy sector.</p>
-                    </div>
-                    <div className="team-card animate-on-scroll" ref={addRef} style={{transitionDelay: '200ms'}}>
-                        <img src="https://storage.googleapis.com/gemini-prod-us-west1-4205090333/e1a5f4f8-11f2-45a2-97b7-6f81c9b609c1" alt="Sunny Dani" className="team-avatar"/>
-                        <h3>Sunny Dani</h3><div className="role">CMO</div><p>Driving market expansion and ensuring every client receives world-class service and support.</p>
-                    </div>
-                    <div className="team-card animate-on-scroll" ref={addRef} style={{transitionDelay: '300ms'}}>
-                        <img src="https://storage.googleapis.com/gemini-prod-us-west1-4205090333/a114f6b2-65a2-4a41-b845-8f6443c0594a" alt="Bhavin Mehta" className="team-avatar"/>
-                        <h3>Bhavin Mehta</h3><div className="role">CTO</div><p>Bringing technical expertise and operational excellence to ensure every project exceeds expectations.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        {/* CTA Section */}
-        <section id="cta">
-            <div className="container">
-                <div className="cta-box animate-on-scroll" ref={addRef}>
-                    <h2>Join the Future of Energy</h2>
-                    <p>Become part of a new era in sustainable energy. Connect with our team and discover the power and savings of solar with AXISOL.</p>
-                    <a href="mailto:sales@axistechinfra.com" className="btn btn-primary">Get Your Free Consultation</a>
-                </div>
-            </div>
-        </section>
-      </main>
-
-      <footer className="footer">
-        <div className="container">
-            <p>&copy; 2025 AXISOL. All Rights Reserved. Empowering an energy-independent India.</p>
-        </div>
-      </footer>
-    </>
-  );
-};
 
 export default About;
