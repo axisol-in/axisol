@@ -8,8 +8,9 @@ import {
   ShieldCheck,
   MessageCircle,
   Gauge,
-  Smartphone,
 } from "lucide-react";
+
+import Title from "../components/ui/Title";
 
 const About: React.FC = () => {
   const animatedScrollRefs = useRef<(HTMLElement | null)[]>([]);
@@ -55,9 +56,8 @@ const About: React.FC = () => {
         <section id="hero" className="hero">
           <div className="container flex justify-center">
             <div className="hero-content animate-on-scroll" ref={addRef}>
-              <h1 className="text-center">
-                About <span className="text-primary">AXISOL</span>
-              </h1>
+              <Title content="About AXISOL" />
+
               <p className="text-center">
                 Axisol was incorporated with the objective of providing best in
                 class Rooftop EPC solutions India, following the best global
@@ -66,10 +66,10 @@ const About: React.FC = () => {
               </p>
 
               <p className="text-center">
-                Leveraging our experience and cross-functional
-                synergies we have since grown as a multi-faceted company with
-                presence across verticals within the solar energy domain,
-                offering end-to-end solutions and services.
+                Leveraging our experience and cross-functional synergies we have
+                since grown as a multi-faceted company with presence across
+                verticals within the solar energy domain, offering end-to-end
+                solutions and services.
               </p>
               <div className="button-group">
                 {/* View Brochure Button (opens new tab) */}
@@ -93,8 +93,10 @@ const About: React.FC = () => {
         <section id="values">
           <div className="container text-center">
             <h2 className="animate-on-scroll" ref={addRef}>
-              Our <span className="text-primary">Unique</span> Value Propositions
+              Our <span className="text-primary">Unique</span> Value
+              Propositions
             </h2>
+
             <p className="section-subtitle animate-on-scroll" ref={addRef}>
               Discover the pillars that set Axisol apart in solar EPC solutions.
             </p>
@@ -272,13 +274,12 @@ const About: React.FC = () => {
           </div>
         </section>
 
-
         <section>
-            <div className="flex justify-center gap-4">
-                <img src="/Society-Brochure-17.png" className="h-[600px]" alt="" />
-                <img src="/Society-Brochure-02.png" className="h-[600px]"  alt="" />
-                <img src="/Society-Brochure-03.png" className="h-[600px]"  alt="" />
-            </div>
+          <div className="flex justify-center gap-4">
+            <img src="/Society-Brochure-17.png" className="h-[600px]" alt="" />
+            <img src="/Society-Brochure-02.png" className="h-[600px]" alt="" />
+            <img src="/Society-Brochure-03.png" className="h-[600px]" alt="" />
+          </div>
         </section>
       </main>
     </div>

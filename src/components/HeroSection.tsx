@@ -4,7 +4,7 @@ import { NavLink } from "react-router-dom";
 const HeroSection: React.FC = () => {
   return (
     <section className="w-screen h-screen">
-      <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center z-10 pointer-events-none">
+      <div className="absolute top-0 left-0 w-full h-full flex flex-col items-center justify-center z-10 pointer-events-none animate-fade-in-up">
         <h1 className="text-4xl md:text-6xl font-bold text-white mb-2 drop-shadow-lg pointer-events-auto text-center">
           Zero Investment
         </h1>

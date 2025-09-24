@@ -12,7 +12,7 @@ const HomePage: React.FC = () => {
     <>
       <HeroSection />
       <div className="w-full bg-[#f7f9fb] pt-16 pb-10 flex justify-center items-center flex-col">
-        <h1 className="text-2xl md:text-4xl text-black mb-6 ">
+        <h1 className="text-2xl md:text-4xl text-black mb-6">
           Save On Electricity Bills
         </h1>
         <p className="text-black py-5  px-8 md:px-16 max-w-3xl text-xl leading-relaxed text-justify md:text-center">
