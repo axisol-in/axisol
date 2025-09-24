@@ -1,4 +1,4 @@
-import React, { act } from "react";
+import React from "react";
 import emailjs from "@emailjs/browser";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
@@ -16,8 +16,6 @@ import {
 } from "lucide-react";
 
 import Title from "./ui/Title";
-import { acceleratedValues } from "framer-motion";
-import { a } from "framer-motion/client";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),

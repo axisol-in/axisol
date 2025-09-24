@@ -13,6 +13,7 @@ import AboutPage from "./pages/About";
 import ProjectsPage from "./pages/Projects";
 import ContactPage from "./pages/Contact";
 import BlogsPage from "./pages/Blogs";
+import BlogPostPage from "./pages/BlogPost";
 import TandC from "./pages/TandC";
 
 const AppContent: React.FC = () => {
@@ -31,6 +32,7 @@ const AppContent: React.FC = () => {
           <Route path="/projects" element={<ProjectsPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/blogs" element={<BlogsPage />} />
+          <Route path="/blog/:id" element={<BlogPostPage />} />
           <Route
             path="/terms-of-use"
             element={<TandC title="Terms & Conditions" />}
