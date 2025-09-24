@@ -1,63 +1,76 @@
-import React, { useState } from 'react';
-import { Calendar, Clock, TrendingUp } from 'lucide-react';
+import React, { useState } from "react";
+import { Calendar, Clock } from "lucide-react";
+import Title from "./ui/Title";
 
 const BlogsSection: React.FC = () => {
   const blogPosts = [
     {
       title: "5 Signs Your Home is Perfect for Solar Installation",
-      excerpt: "Discover if your property meets the ideal conditions for maximum solar energy generation and savings.",
-      image: "https://images.pexels.com/photos/9875394/pexels-photo-9875394.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&dpr=2",
+      excerpt:
+        "Discover if your property meets the ideal conditions for maximum solar energy generation and savings.",
+      image:
+        "https://images.pexels.com/photos/9875394/pexels-photo-9875394.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&dpr=2",
       date: "2024-01-12",
       readTime: "5 min read",
-      category: "Home Solar"
+      category: "Home Solar",
     },
     {
       title: "Solar Panel Maintenance: Tips for Optimal Performance",
-      excerpt: "Simple maintenance practices to ensure your solar panels deliver maximum efficiency year-round.",
-      image: "https://images.pexels.com/photos/9875413/pexels-photo-9875413.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&dpr=2",
+      excerpt:
+        "Simple maintenance practices to ensure your solar panels deliver maximum efficiency year-round.",
+      image:
+        "https://images.pexels.com/photos/9875413/pexels-photo-9875413.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&dpr=2",
       date: "2024-01-10",
       readTime: "6 min read",
-      category: "Maintenance"
+      category: "Maintenance",
     },
     {
       title: "Understanding Solar Net Metering in India",
-      excerpt: "Learn how net metering works and how you can sell excess power back to the grid for additional savings.",
-      image: "https://images.pexels.com/photos/9875392/pexels-photo-9875392.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&dpr=2",
+      excerpt:
+        "Learn how net metering works and how you can sell excess power back to the grid for additional savings.",
+      image:
+        "https://images.pexels.com/photos/9875392/pexels-photo-9875392.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&dpr=2",
       date: "2024-01-08",
       readTime: "7 min read",
-      category: "Technical"
+      category: "Technical",
     },
     {
       title: "Environmental Impact of Solar Energy: Facts & Figures",
-      excerpt: "Discover how switching to solar power contributes to environmental conservation and carbon footprint reduction.",
-      image: "https://images.pexels.com/photos/9875408/pexels-photo-9875408.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&dpr=2",
+      excerpt:
+        "Discover how switching to solar power contributes to environmental conservation and carbon footprint reduction.",
+      image:
+        "https://images.pexels.com/photos/9875408/pexels-photo-9875408.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&dpr=2",
       date: "2024-01-05",
       readTime: "4 min read",
-      category: "Environment"
+      category: "Environment",
     },
     {
       title: "Case Study: 50% Electricity Bill Reduction in Mumbai",
-      excerpt: "Real-world example of how a Mumbai family achieved massive savings with our zero-investment solar solution.",
-      image: "https://images.pexels.com/photos/9875410/pexels-photo-9875410.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&dpr=2",
+      excerpt:
+        "Real-world example of how a Mumbai family achieved massive savings with our zero-investment solar solution.",
+      image:
+        "https://images.pexels.com/photos/9875410/pexels-photo-9875410.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&dpr=2",
       date: "2024-01-03",
       readTime: "6 min read",
-      category: "Case Studies"
+      category: "Case Studies",
     },
     {
       title: "Solar Technology Trends 2024: What's New?",
-      excerpt: "Latest innovations in solar panel technology, efficiency improvements, and what they mean for homeowners.",
-      image: "https://images.pexels.com/photos/9875414/pexels-photo-9875414.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&dpr=2",
+      excerpt:
+        "Latest innovations in solar panel technology, efficiency improvements, and what they mean for homeowners.",
+      image:
+        "https://images.pexels.com/photos/9875414/pexels-photo-9875414.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&dpr=2",
       date: "2024-01-01",
       readTime: "5 min read",
-      category: "Technology"
-    }
+      category: "Technology",
+    },
   ];
 
   const categories = [
     "All Posts",
     "Government Schemes",
     "Home Solar",
-    "Maintenance"
+    "Maintenance",
   ];
 
   const [filter, setFilter] = useState("All Posts");
@@ -67,50 +80,50 @@ const BlogsSection: React.FC = () => {
   );
 
   return (
-    <section data-theme="light" id="blogs" className="py-40 bg-white dark:bg-gray-900 transition-colors  duration-300">
-      <div className="text-center mb-16">
-        <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-          Latest <span className="text-primary">Articles</span>
-        </h2>
-      </div>
+    <section
+      id="blogs"
+      className="bg-secondary transition-colors duration-300"
+    >
+      <Title content="Latest Articles" />
 
-          <div className="bg-white border m-10 mb-10 mt-10 md:mr-32 md:ml-32 dark:bg-gray-900 rounded-2xl shadow-lg overflow-hidden flex flex-col md:flex-row items-center gap-6 p-6 md:p-8">
-      {/* Left Content */}
-      <div className="flex-1">
-        {/* Date */}
-        <div className="flex items-center text-gray-500 dark:text-gray-400 text-sm mb-4">
-          <Clock size={16} className="mr-2" />
-          <span>12 Jun, 2022</span>
+      <div className="bg-white border m-10 mb-10 mt-10 md:mr-32 md:ml-32 dark:bg-gray-900 rounded-2xl shadow-lg overflow-hidden flex flex-col md:flex-row items-center gap-6 p-6 md:p-8">
+        {/* Left Content */}
+        <div className="flex-1">
+          {/* Date */}
+          <div className="flex items-center text-gray-500 dark:text-gray-400 text-sm mb-4">
+            <Clock size={16} className="mr-2" />
+            <span>12 Jun, 2022</span>
+          </div>
+
+          {/* Title */}
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+            Tips and DIY Inspiration for Creative Minds
+          </h2>
+
+          {/* Excerpt */}
+          <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
+            Discover a universe of boundless imagination in the World of
+            Creative Art, where canvases weave stories, sculptures breathe life,
+            and digital realms redefine artistic expression. Unleash your inner
+            artist with tips and inspiration for a journey into the kaleidoscope
+            of creativity.
+          </p>
+
+          {/* Button */}
+          <button className="px-5 py-2 border border-gray-400 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+            Read More
+          </button>
         </div>
 
-        {/* Title */}
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-          Tips and DIY Inspiration for Creative Minds
-        </h2>
-
-        {/* Excerpt */}
-        <p className="text-gray-600 dark:text-gray-300 mb-6 leading-relaxed">
-          Discover a universe of boundless imagination in the World of Creative
-          Art, where canvases weave stories, sculptures breathe life, and digital
-          realms redefine artistic expression. Unleash your inner artist with
-          tips and inspiration for a journey into the kaleidoscope of creativity.
-        </p>
-
-        {/* Button */}
-        <button className="px-5 py-2 border border-gray-400 dark:border-gray-600 rounded-lg text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 transition">
-          Read More
-        </button>
+        {/* Right Image */}
+        <div className="flex-shrink-0">
+          <img
+            src="https://images.pexels.com/photos/9875413/pexels-photo-9875413.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&dpr=2"
+            alt="Creative Art"
+            className="w-full md:w-80 h-full object-cover rounded-lg"
+          />
+        </div>
       </div>
-
-      {/* Right Image */}
-      <div className="flex-shrink-0">
-        <img
-          src="https://images.pexels.com/photos/9875413/pexels-photo-9875413.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&dpr=2"
-          alt="Creative Art"
-          className="w-full md:w-80 h-full object-cover rounded-lg"
-        />
-      </div>
-    </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Category Filter */}

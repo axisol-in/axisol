@@ -51,7 +51,7 @@ const Slider: React.FC = () => {
   );
 
   return (
-    <section ref={sectionRef} className="relative h-[600vh]">
+    <section ref={sectionRef} className="relative h-[500vh]">
       {/* sticky container that follows scroll */}
       <div className="sticky top-0 h-screen w-screen overflow-hidden">
         <motion.div style={{ x }} className="flex h-full w-[100vw]">
