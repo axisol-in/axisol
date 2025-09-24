@@ -88,10 +88,10 @@ const Chatbot: React.FC = () => {
   const sendBotResponse = useCallback((input: string) => {
     const lowerInput = input.toLowerCase();
     let response =
-      "Thank you for your question! For detailed information, please contact our expert team at +91 1800-123-4567 or request a free consultation. We're here to help you save money with solar energy!";
+      "Thank you for your question! For detailed information, please contact our expert team at +91 88501 96164 or request a free consultation. We're here to help you save money with solar energy!";
 
     for (const [key, answer] of Object.entries(botResponses)) {
-      if (lowerInput.includes(key)) {
+      if (lowerInput.includes(key )) {
         response = answer;
         break;
       }
