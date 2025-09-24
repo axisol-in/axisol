@@ -48,19 +48,28 @@ const About: React.FC = () => {
   };
 
   return (
-      <div className="min-h-screen bg-black text-white">
-        <style>{pageStyles}</style>
-        <main>
+    <div className="min-h-screen bg-black text-white">
+      <style>{pageStyles}</style>
+      <main>
         {/* Hero Section */}
         <section id="hero" className="hero">
           <div className="container flex justify-center">
             <div className="hero-content animate-on-scroll" ref={addRef}>
-              <h1 className="text-center">About <span className="text-primary">AXISOL</span></h1>
-              <p className="text-left">
+              <h1 className="text-center">
+                About <span className="text-primary">AXISOL</span>
+              </h1>
+              <p className="text-center">
                 Axisol was incorporated with the objective of providing best in
                 class Rooftop EPC solutions India, following the best global
                 practices and forging alliances with leading global players in
                 the domain.
+              </p>
+
+              <p className="text-center">
+                Leveraging our experience and cross-functional
+                synergies we have since grown as a multi-faceted company with
+                presence across verticals within the solar energy domain,
+                offering end-to-end solutions and services.
               </p>
               <div className="button-group">
                 {/* View Brochure Button (opens new tab) */}
@@ -81,69 +90,140 @@ const About: React.FC = () => {
         </section>
 
         {/* Values Section */}
-          <section id="values">
-            <div className="container text-center">
-              <h2 className="animate-on-scroll" ref={addRef}>
-                Our Unique Value Propositions
-              </h2>
-              <p className="section-subtitle animate-on-scroll" ref={addRef}>
-                Discover the pillars that set Axisol apart in solar EPC solutions.
-              </p>
-              <div className="values-grid grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 mt-8">
-                <div className="value-card animate-on-scroll p-6 rounded-xl bg-[#111]" ref={addRef} style={{ transitionDelay: "100ms" }}>
-                  <PencilRuler size={40} className="mx-auto mb-4 text-yellow-400" />
-                  <h3 className="font-semibold mb-2">In-House Design & Engineering</h3>
-                  <p>Expert team for custom, high-performance solar solutions.</p>
-                </div>
-                <div className="value-card animate-on-scroll p-6 rounded-xl bg-[#111]" ref={addRef} style={{ transitionDelay: "200ms" }}>
-                  <BadgeCheck size={40} className="mx-auto mb-4 text-yellow-400" />
-                  <h3 className="font-semibold mb-2">Transparent Product Selection</h3>
-                  <p>Clear, unbiased options for Tier 1 products—no hidden agendas.</p>
-                </div>
-                <div className="value-card animate-on-scroll p-6 rounded-xl bg-[#111]" ref={addRef} style={{ transitionDelay: "300ms" }}>
-                  <Lightbulb size={40} className="mx-auto mb-4 text-yellow-400" />
-                  <h3 className="font-semibold mb-2">Innovative Mounting Solutions</h3>
-                  <p>Creative designs to maximize space and power generation.</p>
-                </div>
-                <div className="value-card animate-on-scroll p-6 rounded-xl bg-[#111]" ref={addRef} style={{ transitionDelay: "400ms" }}>
-                  <ShoppingCart size={40} className="mx-auto mb-4 text-yellow-400" />
-                  <h3 className="font-semibold mb-2">Direct Procurement</h3>
-                  <p>Efficient sourcing for best pricing and quality assurance.</p>
-                </div>
-                <div className="value-card animate-on-scroll p-6 rounded-xl bg-[#111]" ref={addRef} style={{ transitionDelay: "500ms" }}>
-                  <Globe size={40} className="mx-auto mb-4 text-yellow-400" />
-                  <h3 className="font-semibold mb-2">Web Portal & Mobile Application</h3>
-                  <p>Track project progress and access resources anytime, anywhere.</p>
-                </div>
-                <div className="value-card animate-on-scroll p-6 rounded-xl bg-[#111]" ref={addRef} style={{ transitionDelay: "600ms" }}>
-                  <ShieldCheck size={40} className="mx-auto mb-4 text-yellow-400" />
-                  <h3 className="font-semibold mb-2">5 Years EPC Support</h3>
-                  <p>Comprehensive warranty and maintenance for peace of mind.</p>
-                </div>
-                <div className="value-card animate-on-scroll p-6 rounded-xl bg-[#111]" ref={addRef} style={{ transitionDelay: "700ms" }}>
-                  <MessageCircle size={40} className="mx-auto mb-4 text-yellow-400" />
-                  <h3 className="font-semibold mb-2">Central Complaint Handling System</h3>
-                  <p>Streamlined support for quick resolution of any issues.</p>
-                </div>
-                <div className="value-card animate-on-scroll p-6 rounded-xl bg-[#111]" ref={addRef} style={{ transitionDelay: "800ms" }}>
-                  <Gauge size={40} className="mx-auto mb-4 text-yellow-400" />
-                  <h3 className="font-semibold mb-2">Net/Gross Metering Assistance</h3>
-                  <p>Expert help for seamless integration with local utilities.</p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-        {/* Team Section */}
-        <section id="team">
+        <section id="values">
           <div className="container text-center">
             <h2 className="animate-on-scroll" ref={addRef}>
-              The Architects of Your Savings
+              Our <span className="text-primary">Unique</span> Value Propositions
             </h2>
-            <div className="team-grid">
-              <div className="team-card animate-on-scroll flex flex-col items-center text-center" ref={addRef} style={{ transitionDelay: "100ms" }}>
+            <p className="section-subtitle animate-on-scroll" ref={addRef}>
+              Discover the pillars that set Axisol apart in solar EPC solutions.
+            </p>
+            <div className="values-grid grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 mt-8">
+              <div
+                className="value-card animate-on-scroll p-6 rounded-xl bg-[#111]"
+                ref={addRef}
+                style={{ transitionDelay: "100ms" }}
+              >
+                <PencilRuler
+                  size={40}
+                  className="mx-auto mb-4 text-yellow-400"
+                />
+                <h3 className="font-semibold mb-2">
+                  In-House Design & Engineering
+                </h3>
+                <p>Expert team for custom, high-performance solar solutions.</p>
+              </div>
+              <div
+                className="value-card animate-on-scroll p-6 rounded-xl bg-[#111]"
+                ref={addRef}
+                style={{ transitionDelay: "200ms" }}
+              >
+                <BadgeCheck
+                  size={40}
+                  className="mx-auto mb-4 text-yellow-400"
+                />
+                <h3 className="font-semibold mb-2">
+                  Transparent Product Selection
+                </h3>
+                <p>
+                  Clear, unbiased options for Tier 1 products—no hidden agendas.
+                </p>
+              </div>
+              <div
+                className="value-card animate-on-scroll p-6 rounded-xl bg-[#111]"
+                ref={addRef}
+                style={{ transitionDelay: "300ms" }}
+              >
+                <Lightbulb size={40} className="mx-auto mb-4 text-yellow-400" />
+                <h3 className="font-semibold mb-2">
+                  Innovative Mounting Solutions
+                </h3>
+                <p>Creative designs to maximize space and power generation.</p>
+              </div>
+              <div
+                className="value-card animate-on-scroll p-6 rounded-xl bg-[#111]"
+                ref={addRef}
+                style={{ transitionDelay: "400ms" }}
+              >
+                <ShoppingCart
+                  size={40}
+                  className="mx-auto mb-4 text-yellow-400"
+                />
+                <h3 className="font-semibold mb-2">Direct Procurement</h3>
+                <p>
+                  Efficient sourcing for best pricing and quality assurance.
+                </p>
+              </div>
+              <div
+                className="value-card animate-on-scroll p-6 rounded-xl bg-[#111]"
+                ref={addRef}
+                style={{ transitionDelay: "500ms" }}
+              >
+                <Globe size={40} className="mx-auto mb-4 text-yellow-400" />
+                <h3 className="font-semibold mb-2">
+                  Web Portal & Mobile Application
+                </h3>
+                <p>
+                  Track project progress and access resources anytime, anywhere.
+                </p>
+              </div>
+              <div
+                className="value-card animate-on-scroll p-6 rounded-xl bg-[#111]"
+                ref={addRef}
+                style={{ transitionDelay: "600ms" }}
+              >
+                <ShieldCheck
+                  size={40}
+                  className="mx-auto mb-4 text-yellow-400"
+                />
+                <h3 className="font-semibold mb-2">5 Years EPC Support</h3>
+                <p>Comprehensive warranty and maintenance for peace of mind.</p>
+              </div>
+              <div
+                className="value-card animate-on-scroll p-6 rounded-xl bg-[#111]"
+                ref={addRef}
+                style={{ transitionDelay: "700ms" }}
+              >
+                <MessageCircle
+                  size={40}
+                  className="mx-auto mb-4 text-yellow-400"
+                />
+                <h3 className="font-semibold mb-2">
+                  Central Complaint Handling System
+                </h3>
+                <p>Streamlined support for quick resolution of any issues.</p>
+              </div>
+              <div
+                className="value-card animate-on-scroll p-6 rounded-xl bg-[#111]"
+                ref={addRef}
+                style={{ transitionDelay: "800ms" }}
+              >
+                <Gauge size={40} className="mx-auto mb-4 text-yellow-400" />
+                <h3 className="font-semibold mb-2">
+                  Net/Gross Metering Assistance
+                </h3>
+                <p>
+                  Expert help for seamless integration with local utilities.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Team Section */}
+        <section id="team" className="bg-black">
+          <div className="container text-center">
+            <h2 className="animate-on-scroll" ref={addRef}>
+              The <span className="text-primary">Architects</span> of Your span
+            </h2>
+            <div className="team-grid mt-10">
+              <div
+                className="team-card animate-on-scroll flex flex-col items-center text-center"
+                ref={addRef}
+                style={{ transitionDelay: "100ms" }}
+              >
                 <img
-                  src="https://storage.googleapis.com/gemini-prod-us-west1-4205090333/673907c1-026d-49d7-bf6f-b1e6a147b97e"
+                  src="/dhaval.png"
                   alt="Dhaval Mehta"
                   className="team-avatar"
                 />
@@ -154,9 +234,13 @@ const About: React.FC = () => {
                   the renewable energy sector.
                 </p>
               </div>
-              <div className="team-card animate-on-scroll flex flex-col items-center text-center" ref={addRef} style={{ transitionDelay: "200ms" }}>
+              <div
+                className="team-card animate-on-scroll flex flex-col items-center text-center"
+                ref={addRef}
+                style={{ transitionDelay: "200ms" }}
+              >
                 <img
-                  src="https://storage.googleapis.com/gemini-prod-us-west1-4205090333/e1a5f4f8-11f2-45a2-97b7-6f81c9b609c1"
+                  src="/sunny.png"
                   alt="Sunny Dani"
                   className="team-avatar"
                 />
@@ -167,9 +251,13 @@ const About: React.FC = () => {
                   world-class service and support.
                 </p>
               </div>
-              <div className="team-card animate-on-scroll flex flex-col items-center text-center" ref={addRef} style={{ transitionDelay: "300ms" }}>
+              <div
+                className="team-card animate-on-scroll flex flex-col items-center text-center"
+                ref={addRef}
+                style={{ transitionDelay: "300ms" }}
+              >
                 <img
-                  src="https://storage.googleapis.com/gemini-prod-us-west1-4205090333/a114f6b2-65a2-4a41-b845-8f6443c0594a"
+                  src="/bhavin.png"
                   alt="Bhavin Mehta"
                   className="team-avatar"
                 />
@@ -182,6 +270,15 @@ const About: React.FC = () => {
               </div>
             </div>
           </div>
+        </section>
+
+
+        <section>
+            <div className="flex justify-center gap-4">
+                <img src="/Society-Brochure-17.png" className="h-[600px]" alt="" />
+                <img src="/Society-Brochure-02.png" className="h-[600px]"  alt="" />
+                <img src="/Society-Brochure-03.png" className="h-[600px]"  alt="" />
+            </div>
         </section>
       </main>
     </div>
@@ -311,6 +408,5 @@ const pageStyles = `
         .timeline-item::after { left: 0; }
     }
   `;
-
 
 export default About;
