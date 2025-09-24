@@ -38,13 +38,13 @@ const MessageBubble = ({ message }: { message: MessageType }) => (
     <div
       className={`max-w-xs p-3 rounded-2xl break-words whitespace-pre-wrap ${
         message.sender === "user"
-          ? "bg-secondary text-white"
-          : "bg-gray-100 dark:bg-gray-800 text-gray-900 dark:text-white"
+          ? "bg-primary text-white"
+          : "bg-gray-800 text-white"
       }`}
     >
       <div className="flex items-start space-x-2">
         {message.sender === "bot" && (
-          <Bot size={16} className="mt-1 flex-shrink-0 text-blue-600 dark:text-blue-400" />
+          <Bot size={16} className="mt-1 flex-shrink-0 text-primary" />
         )}
         {message.sender === "user" && <User size={16} className="mt-1 flex-shrink-0" />}
         <div className="flex-1">
@@ -138,7 +138,7 @@ const Chatbot: React.FC = () => {
         <button
           onClick={() => setIsOpen(true)}
           aria-label="Open FAQ Chatbot"
-          className="fixed bottom-6 right-6 w-16 h-16 bg-secondary text-white rounded-full shadow-2xl hover:shadow-3xl transform hover:scale-110 transition-all duration-300 flex items-center justify-center z-40 animate-pulse"
+          className="fixed bottom-6 right-6 w-16 h-16 bg-primary text-white rounded-full shadow-2xl hover:shadow-3xl transform hover:scale-110 transition-all duration-300 flex items-center justify-center z-40 animate-pulse"
         >
           <MessageCircle size={24} />
         </button>
@@ -146,9 +146,9 @@ const Chatbot: React.FC = () => {
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-6 right-6 w-96 h-[32rem] bg-white dark:bg-gray-900 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 z-40 flex flex-col overflow-hidden">
+        <div className="fixed bottom-6 right-6 w-96 h-[32rem] bg-gray-900 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 z-40 flex flex-col overflow-hidden">
           {/* Header */}
-          <div className="bg-secondary text-white p-4 flex items-center justify-between">
+          <div className="bg-primary text-white p-4 flex items-center justify-between">
             <div className="flex items-center space-x-3">
               <div className="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
                 <Bot size={20} />

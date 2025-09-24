@@ -7,7 +7,7 @@ interface TandCProps {
 
 const TandC: React.FC<TandCProps> = ({ title }) => {
     return (
-        <div className="w-full h-full bg-black">
+        <div className="w-full h-full bg-black" id="terms">
             <Title content={title} />
             <div className="text-white px-8 sm:px-16 lg:px-32">
                 <p>Axisol – Term of Use</p><br />
