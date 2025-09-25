@@ -11,7 +11,7 @@ import {
 
 const Location: React.FC = () => {
   return (
-    <section className="bg-secondary dark:from-black dark:to-gray-950 py-16 transition-colors duration-500">
+    <section className="bg-[#fcfbf8] dark:bg-secondary dark:from-black dark:to-gray-950 py-16 transition-colors duration-500">
       <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-start">
         
         {/* Left Info Card */}

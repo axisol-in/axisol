@@ -1,81 +1,21 @@
 import React, { useState } from "react";
 import { MapPin, Zap, Calendar } from "lucide-react";
+import { motion } from "framer-motion";
+import CountUp from "react-countup";
 
 import { projectInfo } from "../assets/projectInfo";
-
 import Title from "./ui/Title";
 
+const stats = [
+  { value: 25, suffix: "+", label: "Projects Completed" },
+  { value: 2.5, suffix: " MW+", label: "Total Capacity Installed" },
+  { value: 15, suffix: " Cr+", label: "Customer Savings" },
+  { value: 12, suffix: "", label: "States Covered" },
+];
+
 const ProjectsSection: React.FC = () => {
-  const [filter, setFilter] = useState("all");
   const [hoveredProject, setHoveredProject] = useState<number | null>(null);
-
-  // const projects = [
-  //   {
-  //     id: 1,
-  //     image: projectImages.residential.pcmc,
-  //     title: "PCMC Project (Government)",
-  //     location: "Pune, Maharashtra",
-  //     capacity: "5 KW",
-  //     type: "residential",
-  //     completion: "2024",
-  //     savings: "₹8,500/month",
-  //   },
-  //   {
-  //     id: 2,
-  //     image: projectImages.residential.Mukundam,
-  //     title: "Mukundam Apartments",
-  //     location: "Mumbai, Maharashtra",
-  //     capacity: "7 KW",
-  //     type: "residential",
-  //     completion: "2024",
-  //     savings: "₹12,000/month",
-  //   },
-  //   {
-  //     id: 3,
-  //     image: projectImages.commercial.Site35_KorumMall,
-  //     title: "Korum Mall Commercial",
-  //     location: "Thane, Maharashtra",
-  //     capacity: "25 KW",
-  //     type: "commercial",
-  //     completion: "2023",
-  //     savings: "₹35,000/month",
-  //   },
-  //   {
-  //     id: 4,
-  //     image: projectImages.residential.korum,
-  //     title: "Korum Residential Block",
-  //     location: "Thane, Maharashtra",
-  //     capacity: "6 KW",
-  //     type: "residential",
-  //     completion: "2024",
-  //     savings: "₹10,200/month",
-  //   },
-  //   {
-  //     id: 5,
-  //     image: projectImages.residential.juhu,
-  //     title: "Juhu Beach Villas",
-  //     location: "Mumbai, Maharashtra",
-  //     capacity: "4 KW",
-  //     type: "residential",
-  //     completion: "2024",
-  //     savings: "₹7,200/month",
-  //   },
-  //   {
-  //     id: 6,
-  //     image: projectImages.commercial.Site20_PunjabRice,
-  //     title: "Punjab Rice Commercial",
-  //     location: "Punjab",
-  //     capacity: "8 KW",
-  //     type: "commercial",
-  //     completion: "2023",
-  //     savings: "₹13,500/month",
-  //   },
-  // ];
-
   const projects = projectInfo;
-  const filteredProjects = projects.filter(
-    (project) => filter === "all" || project.type === filter
-  );
 
   return (
     <section
@@ -86,83 +26,35 @@ const ProjectsSection: React.FC = () => {
         {/* Section Header */}
         <Title content="Our Completed Projects" />
 
-
-        {/* Stats */}
-        <div className="bg-secondary p-8">
+        {/* Stats with Animation */}
+        <div className="dark:bg-secondary p-8 rounded-2xl">
           <div className="grid md:grid-cols-4 gap-8 text-center">
-            <div>
-              <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-                500+
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300">
-                Projects Completed
-              </p>
-            </div>
-            <div>
-              <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-                2.5 MW+
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300">
-                Total Capacity Installed
-              </p>
-            </div>
-            <div>
-              <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-                ₹15 Cr+
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300">Customer Savings</p>
-            </div>
-            <div>
-              <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-                12
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300">States Covered</p>
-            </div>
-          </div>
-        </div>
-
-
-        {/* Filter Buttons */}
-        <div className="flex justify-center pt-12">
-          <div className="inline-flex bg-gray-800 rounded-xl p-1">
-            {/* All */}
-            <button
-              onClick={() => setFilter("all")}
-              className={`px-6 py-3 rounded-lg font-semibold transition-all duration-200 ${filter === "all"
-                ? "bg-primary text-white shadow-lg"
-                : "text-gray-300 hover:text-white"
-                }`}
-            >
-              All
-            </button>
-            {/* Residential */}
-            <button
-              onClick={() => setFilter("residential")}
-              className={`px-6 py-3 rounded-lg font-semibold transition-all duration-200 ${
-                filter === "residential"
-                  ? "bg-primary text-white shadow-lg"
-                  : "text-gray-700 dark:text-gray-300 hover:text-primary"
-              }`}
-            >
-              Residential
-            </button>
-            {/* Commercial */}
-            <button
-              onClick={() => setFilter("commercial")}
-              className={`px-6 py-3 rounded-lg font-semibold transition-all duration-200 ${
-                filter === "commercial"
-                  ? "bg-primary text-white shadow-lg"
-                  : "text-gray-700 dark:text-gray-300 hover:text-primary"
-              }`}
-            >
-              Commercial
-            </button>
+            {stats.map((stat, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: i * 0.2 }}
+                viewport={{ once: true }}
+              >
+                <h3 className="text-3xl font-bold text-primary dark:text-white mb-2">
+                  <CountUp
+                    start={0}
+                    end={stat.value}
+                    duration={2}
+                    decimals={stat.label.includes("Capacity") ? 1 : 0}
+                  />
+                  {stat.suffix}
+                </h3>
+                <p className="text-gray-600 dark:text-gray-300">{stat.label}</p>
+              </motion.div>
+            ))}
           </div>
         </div>
 
         {/* Projects Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 py-12">
-          {filteredProjects.map((project) => (
+          {projects.map((project) => (
             <div
               key={project.id}
               className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 bg-gray-50 dark:bg-gray-900"
@@ -178,8 +70,9 @@ const ProjectsSection: React.FC = () => {
 
                 {/* Overlay */}
                 <div
-                  className={`absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent transition-opacity duration-300 ${hoveredProject === project.id ? "opacity-100" : "opacity-60"
-                    }`}
+                  className={`absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent transition-opacity duration-300 ${
+                    hoveredProject === project.id ? "opacity-100" : "opacity-60"
+                  }`}
                 />
 
                 {/* Content */}
@@ -217,19 +110,6 @@ const ProjectsSection: React.FC = () => {
                       </div>
                     </div>
                   )}
-                </div>
-
-                {/* Type Badge */}
-                <div className="absolute top-4 right-4">
-                  <span
-                    className={`px-3 py-1 rounded-full text-xs font-semibold ${project.type === "residential"
-                      ? "bg-blue-500 text-white"
-                      : "bg-purple-500 text-white"
-                      }`}
-                  >
-                    {project.type.charAt(0).toUpperCase() +
-                      project.type.slice(1)}
-                  </span>
                 </div>
               </div>
             </div>
