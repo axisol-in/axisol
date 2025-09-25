@@ -109,7 +109,7 @@ const ContactSection: React.FC = () => {
 
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Contact Form */}
-          <div className="bg-white dark:bg-gray-900 rounded-3xl shadow-2xl p-8 lg:p-12 border border-gray-200 dark:border-gray-700">
+          <div className="bg-white dark:bg-gray-900 rounded-3xl shadow-2xl p-8 lg:p-12 border border-gray-200 dark:border-gray-700 mb-10">
             <div className="flex items-center space-x-3 mb-8">
               <div className="w-12 h-12 bg-primary rounded-xl flex items-center justify-center">
                 <Send className="w-6 h-6 text-white" />
