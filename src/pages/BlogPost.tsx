@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+
 import {
   ArrowLeft,
   Calendar,
@@ -13,52 +14,137 @@ import {
   ChevronRight,
 } from "lucide-react";
 
+type Query = {
+  query: string;
+  params: {
+    id: string | null | undefined;
+  };
+};
+
+type Post = {
+  _id: string;
+  title: string;
+  categories:
+    | {
+        title: string;
+      }[]
+    | null;
+  author: {
+    name: string;
+  };
+  body: {
+    children: {
+      text: string;
+    }[];
+  }[];
+  mainImage: {
+    url: string;
+    alt: string;
+  };
+};
+
 const BlogPostPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
+  const [liked, setLiked] = useState(false);
+  const [readingProgress, setReadingProgress] = useState(0);
+  const [post, setPost] = useState<Post | null>(null);
+  // const [relatedPosts, setRelatedPosts] = useState<Post[] | null>(null);
+
+  const createPostQuery = (id: string | null | undefined): Query => ({
+    query: `
+      *[_type == "post" && _id == $id]{
+        _createdAt,
+        _id,
+        _type,
+        _updatedAt,
+        categories[] -> { title },
+        author->{ name },
+        body,
+        mainImage{ asset->{ _id, url }, alt },
+        title
+      }
+    `,
+    params: { id },
+  });
+
+  async function fetchBlogs(q: Query): Promise<Post> {
+    const url =
+      "https://o9stxxyy.api.sanity.io/v2025-09-25/data/query/production";
+
+    const post = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(q),
+    });
+
+    const data = await post.json();
+    const fetched = data.result[0];
+
+    const p: Post = {
+      _id: fetched.id,
+      title: fetched.title,
+      author: fetched.author,
+      body: fetched.body,
+      categories: fetched.categories,
+      mainImage: {
+        url: fetched.mainImage.asset.url,
+        alt: fetched.mainImage.alt,
+      },
+    };
+
+    return p;
+  }
+
+  useEffect(() => {
+    async function loadPost() {
+      const p = await fetchBlogs(createPostQuery(id));
+      setPost(p);
+    }
+
+    loadPost();
+  }, [id]);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const winScroll =
+        document.body.scrollTop || document.documentElement.scrollTop;
+      const height =
+        document.documentElement.scrollHeight -
+        document.documentElement.clientHeight;
+      const scrolled = (winScroll / height) * 100;
+      setReadingProgress(scrolled);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navigate = useNavigate();
 
-  const [liked, setLiked] = useState(false);
-  const [readingProgress, setReadingProgress] = useState(0);
+  if (!post) {
+    return <div>Loading...</div>;
+  }
 
-  // Static blog post data for UI demonstration
+  console.log(id);
+
   const blogPost = {
-    _id: "9ec7f4cf-ab2f-4ac4-8c97-aade95a70c28",
-    title: "Attention is What Needed: The Future of Solar Energy",
-    content: [
-      "The solar energy industry is experiencing unprecedented growth, and attention to detail is what separates successful installations from mediocre ones. At Axisol, we understand that every solar project requires careful planning, precise execution, and ongoing attention to performance optimization.",
-
-      "When we talk about solar energy solutions, we're not just talking about panels on your roof. We're talking about a comprehensive system that requires attention at every level - from initial site assessment to long-term maintenance strategies.",
-
-      "Our zero-investment solar program has revolutionized how homeowners approach renewable energy. By focusing our attention on removing financial barriers, we've made solar accessible to thousands of Indian families who previously couldn't afford the upfront costs.",
-
-      "The key to our success lies in paying attention to three critical areas:",
-
-      "1. **Site Assessment Excellence**: Every roof is unique, and our engineers pay meticulous attention to factors like orientation, shading, structural integrity, and local weather patterns. This attention to detail ensures optimal system performance for decades.",
-
-      "2. **Quality Component Selection**: We don't just install any panels - we carefully select components that match your specific needs. Our attention to quality means using only BIS-certified panels and MNRE-approved inverters.",
-
-      "3. **Performance Monitoring**: After installation, our attention shifts to continuous monitoring. We track your system's performance daily, ensuring you get the maximum savings promised in your agreement.",
-
-      "The solar industry often overlooks the importance of customer education, but at Axisol, we pay special attention to ensuring our customers understand their systems. Knowledge empowers you to maximize your investment and identify any issues early.",
-
-      "Looking ahead, the future of solar energy will belong to companies that pay attention to emerging technologies like battery storage, smart grid integration, and AI-powered optimization. We're already investing our attention in these areas to stay ahead of the curve.",
-
-      "If you're considering solar for your home, remember that attention to detail in the planning phase will pay dividends for the next 25 years. Choose a partner who gives your project the attention it deserves.",
-    ],
-    author: "Axisol Team",
+    _id: post._id,
+    title: post.title,
+    content: [post.body.map((item) => item.children[0].text).join(" ")],
+    author: post.author.name,
     createdAt: "2025-09-24T09:20:53Z",
     updatedAt: "2025-09-24T09:25:22Z",
     readTime: 8,
     views: 1247,
-    image:
-      "https://images.pexels.com/photos/9875394/pexels-photo-9875394.jpeg?auto=compress&cs=tinysrgb&w=1200&h=600&dpr=2",
-    imageAlt:
-      "Solar panels installation on residential roof with blue sky background",
-    category: "Solar Technology",
+    image: post.mainImage.url,
+    imageAlt: post.mainImage.alt,
+    category: post.categories
+      ? post.categories.map((c) => c.title).join(" ")
+      : "Blog",
   };
 
-  // Related posts for demonstration
   const relatedPosts = [
     {
       id: "1",
@@ -87,20 +173,6 @@ const BlogPostPage: React.FC = () => {
   ];
 
   // Reading progress tracker
-  useEffect(() => {
-    const handleScroll = () => {
-      const winScroll =
-        document.body.scrollTop || document.documentElement.scrollTop;
-      const height =
-        document.documentElement.scrollHeight -
-        document.documentElement.clientHeight;
-      const scrolled = (winScroll / height) * 100;
-      setReadingProgress(scrolled);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   // Handle share functionality
   const handleShare = async () => {
@@ -180,7 +252,7 @@ const BlogPostPage: React.FC = () => {
             </span>
             <ChevronRight size={16} />
             <span className="hover:text-primary cursor-pointer transition-colors">
-              {blogPost.category}
+              {blogPost.category ? blogPost.category : "Blog"}
             </span>
             <ChevronRight size={16} />
             <span className="text-primary font-medium">Current Article</span>
