@@ -7,8 +7,8 @@ const Footer: React.FC = () => {
       <NavLink to="/">Axisol © 2025</NavLink>
       <NavLink to="/about">About Us</NavLink>
       <NavLink to="/projects">Projects</NavLink>
-      <NavLink to="/contact">Contact</NavLink>
       <NavLink to="/blogs">Blogs </NavLink>
+      <NavLink to="/contact">Contact</NavLink>
       <NavLink to="/terms-of-use">Terms & Conditions</NavLink>
       <NavLink to="/privacy-policy">Piracy Policy</NavLink>
     </section>
