@@ -80,7 +80,7 @@ const ProjectsSection: React.FC = () => {
   return (
     <section
       id="projects"
-      className="bg-secondary min-h-screen transition-colors duration-300"
+      className="bg-[#fcfbf8] dark:bg-secondary min-h-screen transition-colors duration-300"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -138,20 +138,22 @@ const ProjectsSection: React.FC = () => {
             {/* Residential */}
             <button
               onClick={() => setFilter("residential")}
-              className={`px-6 py-3 rounded-lg font-semibold transition-all duration-200 ${filter === "residential"
-                ? "bg-primary text-white shadow-lg"
-                : "text-gray-300 hover:text-white"
-                }`}
+              className={`px-6 py-3 rounded-lg font-semibold transition-all duration-200 ${
+                filter === "residential"
+                  ? "bg-primary text-white shadow-lg"
+                  : "text-gray-700 dark:text-gray-300 hover:text-primary"
+              }`}
             >
               Residential
             </button>
             {/* Commercial */}
             <button
               onClick={() => setFilter("commercial")}
-              className={`px-6 py-3 rounded-lg font-semibold transition-all duration-200 ${filter === "commercial"
-                ? "bg-primary text-white shadow-lg"
-                : "text-gray-300 hover:text-white"
-                }`}
+              className={`px-6 py-3 rounded-lg font-semibold transition-all duration-200 ${
+                filter === "commercial"
+                  ? "bg-primary text-white shadow-lg"
+                  : "text-gray-700 dark:text-gray-300 hover:text-primary"
+              }`}
             >
               Commercial
             </button>
@@ -163,7 +165,7 @@ const ProjectsSection: React.FC = () => {
           {filteredProjects.map((project) => (
             <div
               key={project.id}
-              className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+              className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 bg-gray-50 dark:bg-gray-900"
               onMouseEnter={() => setHoveredProject(project.id)}
               onMouseLeave={() => setHoveredProject(null)}
             >

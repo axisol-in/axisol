@@ -14,7 +14,7 @@ const HeroSection: React.FC = () => {
         <div className="flex gap-10">
           <NavLink
             to="/about"
-            className="pointer-events-auto bg-primary rounded-full hover:scale-105 transition-transform px-4 py-2"
+            className="pointer-events-auto bg-primary rounded-full text-white hover:scale-105 transition-transform px-4 py-2"
           >
             Know More
           </NavLink>

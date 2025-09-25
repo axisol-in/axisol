@@ -80,10 +80,11 @@ const BlogsPage: React.FC = () => {
   );
 
   return (
-    <section id="blogs" className="bg-secondary transition-colors duration-300">
+  <section id="blogs" className="bg-[#fcfbf8] dark:bg-secondary transition-colors duration-300">
       <Title content="Latest Articles" />
 
-      <div className="bg-white border m-10 mb-10 mt-10 md:mr-32 md:ml-32 dark:bg-gray-900 rounded-2xl shadow-lg overflow-hidden flex flex-col md:flex-row items-center gap-6 p-6 md:p-8">
+      {/* Featured Blog Card */}
+      <div className="bg-white dark:bg-gray-900 border dark:border-gray-700 m-10 md:mx-32 rounded-2xl shadow-lg overflow-hidden flex flex-col md:flex-row items-center gap-6 p-6 md:p-8">
         {/* Left Content */}
         <div className="flex-1">
           {/* Date */}
