@@ -182,7 +182,7 @@ const Chatbot: React.FC = () => {
                 <button
                   key={idx}
                   onClick={() => handleSendMessage(qr)}
-                  className="px-3 py-1 bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white rounded-full text-xs hover:bg-gray-300 dark:hover:bg-gray-600 transition"
+                  className="px-3 py-1 bg-gray-700 text-gray-900 text-white rounded-full text-xs hover:bg-gray-300 dark:hover:bg-gray-600 transition"
                 >
                   {qr}
                 </button>
@@ -197,13 +197,13 @@ const Chatbot: React.FC = () => {
                 onChange={(e) => setInputMessage(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && handleSendMessage()}
                 placeholder="Ask me anything about solar..."
-                className="flex-1 px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-xl bg-white dark:bg-gray-800 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 text-sm"
+                className="flex-1 px-4 py-2 border border-gray-600 rounded-xl bg-gray-800 text-white placeholder-gray-500 dark:placeholder-gray-400 text-sm"
                 aria-label="Type your message"
                 autoFocus
               />
               <button
                 onClick={() => handleSendMessage()}
-                className="p-2 bg-secondary text-white hover:scale-110 transition-transform rounded-lg"
+                className="p-2 bg-primary hover:scale-110 transition-transform rounded-lg"
                 aria-label="Send Message"
               >
                 <Send size={16} />

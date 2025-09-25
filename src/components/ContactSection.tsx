@@ -103,7 +103,7 @@ const ContactSection: React.FC = () => {
   ];
 
   return (
-    <section id="contact" className="min-h-screen bg-[#fcfbf8] dark:bg-secondary transition-colors duration-300">
+    <section id="contact" className="min-h-screen bg-[#fcfbf8] dark:bg-secondary transition-colors duration-300 pb-10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <Title content="Get in Touch" />
 
