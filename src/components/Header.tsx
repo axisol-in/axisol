@@ -45,9 +45,9 @@ const Header: React.FC = () => {
   return (
     <>
       <header
-        className={`fixed top-5 w-[90%] lg:w-[80%] pl-10 pr-10 z-40 backdrop-blur-lg shadow-2xl transition-colors duration-300 rounded-full
+      className={`fixed top-5 w-[90%] lg:w-[80%] pl-10 pr-10 z-40 backdrop-blur-lg shadow-2xl transition-colors duration-300 rounded-full
           ${scrolled ? "bg-black/80" : "bg-transparent"}
-        `}
+  `}
       >
         <div className="flex justify-between items-center h-16">
           {/* Mobile Menu Button */}

@@ -26,30 +26,39 @@ const HomePage: React.FC = () => {
       <img src={Home1} alt="Home 1 Image" className="w-full" />
       <WhyChooseSection />
       <Slider />
-     {/* Stats Section */}
-<div className="bg-[#fcfbf8] dark:bg-secondary py-12 px-6">
-  <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-    {[
-      { value: "500+", label: "Projects Completed" },
-      { value: "2.5 MW+", label: "Total Capacity Installed" },
-      { value: "₹15 Cr+", label: "Customer Savings" },
-      { value: "12", label: "States Covered" },
-    ].map((stat, index) => (
-      <div
-        key={index}
-        className="bg-gradient-to-b from-[#fdfcf9] dark:bg-gray-900 border border-gray-200 dark:border-gray-700 
-                   rounded-2xl p-6  transition-all duration-300 
-                   transform hover:-translate-y-2"
-      >
-        <h3 className="text-3xl font-extrabold text-primary dark:text-white mb-2">
-          {stat.value}
-        </h3>
-        <p className="text-gray-700 dark:text-gray-300">{stat.label}</p>
+      {/* Stats */}
+      <div className="bg-secondary p-8">
+        <div className="grid md:grid-cols-4 gap-8 text-center">
+          <div>
+            <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+              500+
+            </h3>
+            <p className="text-gray-600 dark:text-gray-300">
+              Projects Completed
+            </p>
+          </div>
+          <div>
+            <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+              2.5 MW+
+            </h3>
+            <p className="text-gray-600 dark:text-gray-300">
+              Total Capacity Installed
+            </p>
+          </div>
+          <div>
+            <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+              ₹15 Cr+
+            </h3>
+            <p className="text-gray-600 dark:text-gray-300">Customer Savings</p>
+          </div>
+          <div>
+            <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+              12
+            </h3>
+            <p className="text-gray-600 dark:text-gray-300">States Covered</p>
+          </div>
+        </div>
       </div>
-    ))}
-  </div>
-</div>
-
       <Location />
     </>
   );
