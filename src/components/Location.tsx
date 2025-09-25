@@ -11,7 +11,7 @@ import {
 
 const Location: React.FC = () => {
   return (
-    <section className="bg-gradient-to-b from-[#fdfcf9] to-[#f7f7f5] dark:from-black dark:to-gray-950 py-16 transition-colors duration-500">
+    <section className="bg-secondary dark:from-black dark:to-gray-950 py-16 transition-colors duration-500">
       <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-start">
         
         {/* Left Info Card */}
@@ -103,7 +103,7 @@ const Location: React.FC = () => {
         </div>
 
         {/* Right Map */}
-        <div className="rounded-2xl overflow-hidden shadow-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-[#1e253a]">
+        <div className="rounded-2xl overflow-hidden shadow-xl border border-gray-200 dark:border-gray-700 bg-gray-200 dark:bg-[#1e253a]">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3763.659991421949!2d72.82615867523565!3d19.361259045334845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7b05c063d0109%3A0x4090a35d9e395c0!2sGold%20Crest%20Business%20Center!5e0!3m2!1sen!2sin!4v1694767890123!5m2!1sen!2sin"
             width="100%"

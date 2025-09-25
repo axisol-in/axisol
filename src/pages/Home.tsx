@@ -26,39 +26,6 @@ const HomePage: React.FC = () => {
       <img src={Home1} alt="Home 1 Image" className="w-full" />
       <WhyChooseSection />
       <Slider />
-      {/* Stats */}
-      <div className="bg-secondary p-8">
-        <div className="grid md:grid-cols-4 gap-8 text-center">
-          <div>
-            <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-              500+
-            </h3>
-            <p className="text-gray-600 dark:text-gray-300">
-              Projects Completed
-            </p>
-          </div>
-          <div>
-            <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-              2.5 MW+
-            </h3>
-            <p className="text-gray-600 dark:text-gray-300">
-              Total Capacity Installed
-            </p>
-          </div>
-          <div>
-            <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-              ₹15 Cr+
-            </h3>
-            <p className="text-gray-600 dark:text-gray-300">Customer Savings</p>
-          </div>
-          <div>
-            <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
-              12
-            </h3>
-            <p className="text-gray-600 dark:text-gray-300">States Covered</p>
-          </div>
-        </div>
-      </div>
       <Location />
     </>
   );

@@ -20,6 +20,7 @@ export default {
         // Semantic color mappings for easier usage
         primary: "#f69f1f", // Bright Orange
         secondary: "#000000", // Black
+        tertiary: "#111111", // Black-gray
         accent: "#92aa36", // Olive Green
         neutral: "#8a9195", // Medium Gray
         background: "#f8fbfc", // Off White

@@ -7,9 +7,9 @@ interface TandCProps {
 
 const TandC: React.FC<TandCProps> = ({ title }) => {
     return (
-        <div className="w-full h-full bg-black" id="terms">
+        <div className="w-full h-full bg-[#fcfbf8] dark:bg-secondary text-sencondary dark:text-white" id="terms">
             <Title content={title} />
-            <div className="text-white px-8 sm:px-16 lg:px-32">
+            <div className="px-8 sm:px-16 lg:px-32">
                 <p>Axisol – Term of Use</p><br />
                 <p>All Axisol products are owned and operated by Axisolar Infrasturture LLP (“Axisol” is the brand name) and will be referred to as “we”, “our” and “us” in this Terms of Use Policy. By using Axisol products which includes website www.axisol.in you agree to the Internet Privacy Policy of website (“the Website”), and privacy policy of all Axisol products.</p><br />
                 <p>Access to and use of Axisol products including the information, materials, products and services available through the Website are subject to these Terms of Use. Please read the Terms of Use and disclaimers carefully before using Axisol products.</p><br />
