@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import {
   ArrowLeft,
@@ -13,44 +14,16 @@ import {
   MessageCircle,
   ChevronRight,
 } from "lucide-react";
-
-type Query = {
-  query: string;
-  params: {
-    id: string | null | undefined;
-  };
-};
-
-type Post = {
-  _id: string;
-  title: string;
-  categories:
-    | {
-        title: string;
-      }[]
-    | null;
-  author: {
-    name: string;
-  };
-  body: {
-    children: {
-      text: string;
-    }[];
-  }[];
-  mainImage: {
-    url: string;
-    alt: string;
-  };
-};
+import { Query, Post } from "./types";
+import { fetchBlog, fetchSingleBlog } from "./utils";
 
 const BlogPostPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const [liked, setLiked] = useState(false);
   const [readingProgress, setReadingProgress] = useState(0);
   const [post, setPost] = useState<Post | null>(null);
-  // const [relatedPosts, setRelatedPosts] = useState<Post[] | null>(null);
-
-  const createPostQuery = (id: string | null | undefined): Query => ({
+  const [rPosts, setrPosts] = useState<Post[] | null>(null);
+  /*  const createPostQuery = (id: string | null | undefined): Query => ({
     query: `
       *[_type == "post" && _id == $id]{
         _createdAt,
@@ -66,41 +39,30 @@ const BlogPostPage: React.FC = () => {
     `,
     params: { id },
   });
+  */
 
-  async function fetchBlogs(q: Query): Promise<Post> {
-    const url =
-      "https://o9stxxyy.api.sanity.io/v2025-09-25/data/query/production";
-
-    const post = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(q),
-    });
-
-    const data = await post.json();
-    const fetched = data.result[0];
-
-    const p: Post = {
-      _id: fetched.id,
-      title: fetched.title,
-      author: fetched.author,
-      body: fetched.body,
-      categories: fetched.categories,
-      mainImage: {
-        url: fetched.mainImage.asset.url,
-        alt: fetched.mainImage.alt,
-      },
-    };
-
-    return p;
-  }
+  const createOtherPostsQuery = (limit: number): Query => ({
+    query: `
+      *[_type == "post"] | order(_createdAt desc)[0..$limit-1]{
+        _id,
+        _createdAt,
+        _updatedAt,
+        title,
+        categories,
+        author->{name},
+        body,
+        mainImage{asset->{_id,url}, alt}
+      }
+    `,
+    params: { limit },
+  });
 
   useEffect(() => {
     async function loadPost() {
-      const p = await fetchBlogs(createPostQuery(id));
+      const p = await fetchSingleBlog(id);
+      const moreP = await fetchBlog(createOtherPostsQuery(3));
       setPost(p);
+      setrPosts(moreP);
     }
 
     loadPost();
@@ -134,8 +96,8 @@ const BlogPostPage: React.FC = () => {
     title: post.title,
     content: [post.body.map((item) => item.children[0].text).join(" ")],
     author: post.author.name,
-    createdAt: "2025-09-24T09:20:53Z",
-    updatedAt: "2025-09-24T09:25:22Z",
+    createdAt: post._createdAt,
+    updatedAt: post._updatedAt,
     readTime: 8,
     views: 1247,
     image: post.mainImage.url,
@@ -145,32 +107,15 @@ const BlogPostPage: React.FC = () => {
       : "Blog",
   };
 
-  const relatedPosts = [
-    {
-      id: "1",
-      title: "5 Signs Your Home is Perfect for Solar",
-      image:
-        "https://images.pexels.com/photos/9875413/pexels-photo-9875413.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&dpr=2",
-      date: "2025-09-20",
-      readTime: 5,
-    },
-    {
-      id: "2",
-      title: "Understanding Net Metering in India",
-      image:
-        "https://images.pexels.com/photos/9875392/pexels-photo-9875392.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&dpr=2",
-      date: "2025-09-18",
-      readTime: 7,
-    },
-    {
-      id: "3",
-      title: "Solar Panel Maintenance Guide",
-      image:
-        "https://images.pexels.com/photos/9875408/pexels-photo-9875408.jpeg?auto=compress&cs=tinysrgb&w=400&h=300&dpr=2",
-      date: "2025-09-15",
-      readTime: 6,
-    },
-  ];
+  const relatedPosts = rPosts
+    ? rPosts.map((p) => ({
+        id: p._id,
+        title: p.title,
+        image: p.mainImage.url,
+        date: p._createdAt,
+        readTime: 5,
+      }))
+    : [];
 
   // Reading progress tracker
 
@@ -408,10 +353,10 @@ const BlogPostPage: React.FC = () => {
 
           <div className="grid md:grid-cols-3 gap-6">
             {relatedPosts.map((post) => (
-              <article
+              <Link
                 key={post.id}
+                to={`/blog/${post.id}`}
                 className="bg-white dark:bg-gray-800 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden cursor-pointer group transform hover:-translate-y-2"
-                onClick={() => navigate(`/blog/${post.id}`)}
               >
                 <div className="relative overflow-hidden">
                   <img
@@ -443,7 +388,7 @@ const BlogPostPage: React.FC = () => {
                     </div>
                   </div>
                 </div>
-              </article>
+              </Link>
             ))}
           </div>
         </section>

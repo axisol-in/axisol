@@ -1,71 +1,42 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Calendar, Clock } from "lucide-react";
 import Title from "../components/ui/Title";
+import { fetchBlog, createPostsQuery } from "./utils";
+import { Post } from "./types";
+import { Link } from "react-router-dom";
 
 const BlogsPage: React.FC = () => {
-  const blogPosts = [
-    {
-      title: "5 Signs Your Home is Perfect for Solar Installation",
-      excerpt:
-        "Discover if your property meets the ideal conditions for maximum solar energy generation and savings.",
-      image:
-        "https://images.pexels.com/photos/9875394/pexels-photo-9875394.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&dpr=2",
-      date: "2024-01-12",
-      readTime: "5 min read",
-      category: "Home Solar",
-    },
-    {
-      title: "Solar Panel Maintenance: Tips for Optimal Performance",
-      excerpt:
-        "Simple maintenance practices to ensure your solar panels deliver maximum efficiency year-round.",
-      image:
-        "https://images.pexels.com/photos/9875413/pexels-photo-9875413.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&dpr=2",
-      date: "2024-01-10",
-      readTime: "6 min read",
-      category: "Maintenance",
-    },
-    {
-      title: "Understanding Solar Net Metering in India",
-      excerpt:
-        "Learn how net metering works and how you can sell excess power back to the grid for additional savings.",
-      image:
-        "https://images.pexels.com/photos/9875392/pexels-photo-9875392.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&dpr=2",
-      date: "2024-01-08",
-      readTime: "7 min read",
-      category: "Technical",
-    },
-    {
-      title: "Environmental Impact of Solar Energy: Facts & Figures",
-      excerpt:
-        "Discover how switching to solar power contributes to environmental conservation and carbon footprint reduction.",
-      image:
-        "https://images.pexels.com/photos/9875408/pexels-photo-9875408.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&dpr=2",
-      date: "2024-01-05",
-      readTime: "4 min read",
-      category: "Environment",
-    },
-    {
-      title: "Case Study: 50% Electricity Bill Reduction in Mumbai",
-      excerpt:
-        "Real-world example of how a Mumbai family achieved massive savings with our zero-investment solar solution.",
-      image:
-        "https://images.pexels.com/photos/9875410/pexels-photo-9875410.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&dpr=2",
-      date: "2024-01-03",
-      readTime: "6 min read",
-      category: "Case Studies",
-    },
-    {
-      title: "Solar Technology Trends 2024: What's New?",
-      excerpt:
-        "Latest innovations in solar panel technology, efficiency improvements, and what they mean for homeowners.",
-      image:
-        "https://images.pexels.com/photos/9875414/pexels-photo-9875414.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&dpr=2",
-      date: "2024-01-01",
-      readTime: "5 min read",
-      category: "Technology",
-    },
-  ];
+  const [posts, setPosts] = useState<Post[] | null>(null);
+  const [filter, setFilter] = useState("All Posts");
 
+  useEffect(() => {
+    async function loadPosts() {
+      const bPosts = await fetchBlog(createPostsQuery());
+      setPosts(bPosts);
+    }
+    loadPosts();
+  }, []);
+
+  if (!posts) {
+    return <div>Loading...</div>;
+  }
+
+  const blogPosts = posts.map((p) => ({
+    id: p._id,
+    title: p.title,
+    excerpt: p.body
+      ? p.body
+          .map((block) => block.children.map((child) => child.text).join(" "))
+          .join(" ")
+          .slice(0, 150) + "..."
+      : "",
+    image: p.mainImage.url,
+    date: p._createdAt,
+    readTime: "5 min read",
+    category: p.categories
+      ? p.categories.map((c) => c.title).join(", ")
+      : "Solar Energy",
+  }));
   const categories = [
     "All Posts",
     "Government Schemes",
@@ -73,14 +44,15 @@ const BlogsPage: React.FC = () => {
     "Maintenance",
   ];
 
-  const [filter, setFilter] = useState("All Posts");
-
   const filteredBlogs = blogPosts.filter(
-    (blog) => filter === "All Posts" || blog.category === filter
+    (blog) => filter === "All Posts" || blog.category.includes(filter),
   );
 
   return (
-  <section id="blogs" className="bg-[#fcfbf8] dark:bg-secondary transition-colors duration-300">
+    <section
+      id="blogs"
+      className="bg-[#fcfbf8] dark:bg-secondary transition-colors duration-300"
+    >
       <Title content="Latest Articles" />
 
       {/* Featured Blog Card */}
@@ -145,54 +117,51 @@ const BlogsPage: React.FC = () => {
 
         {/* Blog Posts Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredBlogs.map((post, index) => (
-            <article
-              key={index}
-              className="group bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 dark:border-gray-700 overflow-hidden"
-            >
-              <div className="relative">
-                <img
-                  src={post.image}
-                  alt={post.title}
-                  className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute top-4 left-4">
-                  <span className="px-3 py-1 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm text-gray-800 dark:text-gray-200 rounded-full text-xs font-medium">
-                    {post.category}
-                  </span>
-                </div>
-              </div>
-
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 leading-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
-                  {post.title}
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
-                  {post.excerpt}
-                </p>
-
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-4 text-sm text-gray-500 dark:text-gray-400">
-                    <div className="flex items-center space-x-1">
-                      <Calendar size={14} />
-                      <span>
-                        {new Date(post.date).toLocaleDateString("en-IN", {
-                          day: "numeric",
-                          month: "short",
-                        })}
-                      </span>
-                    </div>
-                    <div className="flex items-center space-x-1">
-                      <Clock size={14} />
-                      <span>{post.readTime}</span>
-                    </div>
+          {filteredBlogs.map((post) => (
+            <Link key={post.id} to={`/blog/${post.id}`}>
+              <article className="group bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 dark:border-gray-700 overflow-hidden">
+                <div className="relative">
+                  <img
+                    src={post.image}
+                    alt={post.title}
+                    className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute top-4 left-4">
+                    <span className="px-3 py-1 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm text-gray-800 dark:text-gray-200 rounded-full text-xs font-medium">
+                      {post.category}
+                    </span>
                   </div>
-                  <button className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium text-sm group-hover:translate-x-1 transition-transform duration-200">
-                    Read More →
-                  </button>
                 </div>
-              </div>
-            </article>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 leading-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
+                    {post.title}
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+                    {post.excerpt}
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-4 text-sm text-gray-500 dark:text-gray-400">
+                      <div className="flex items-center space-x-1">
+                        <Calendar size={14} />
+                        <span>
+                          {new Date(post.date).toLocaleDateString("en-IN", {
+                            day: "numeric",
+                            month: "short",
+                          })}
+                        </span>
+                      </div>
+                      <div className="flex items-center space-x-1">
+                        <Clock size={14} />
+                        <span>{post.readTime}</span>
+                      </div>
+                    </div>
+                    <span className="text-blue-600 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-300 font-medium text-sm group-hover:translate-x-1 transition-transform duration-200">
+                      Read More →
+                    </span>
+                  </div>
+                </div>
+              </article>
+            </Link>
           ))}
         </div>
       </div>
