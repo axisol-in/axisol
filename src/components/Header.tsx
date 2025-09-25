@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Sun, Moon } from "lucide-react";
 import { NavLink } from "react-router-dom";
 import logo from "../assets/logos/logo.png";
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [theme, setTheme] = useState<"light" | "dark">("light");
 
   // Scroll detection
   useEffect(() => {
@@ -15,6 +16,23 @@ const Header: React.FC = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Load theme from localStorage
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme") as "light" | "dark";
+    if (savedTheme) {
+      setTheme(savedTheme);
+      document.documentElement.classList.toggle("dark", savedTheme === "dark");
+    }
+  }, []);
+
+  // Toggle theme
+  const toggleTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
+    document.documentElement.classList.toggle("dark", newTheme === "dark");
+  };
 
   const menuItems = [
     { name: "Home", href: "/" },
@@ -45,7 +63,7 @@ const Header: React.FC = () => {
             ) : (
               <Menu
                 size={24}
-                className="hover:scale-110 transition-transform duration-200  "
+                className="hover:scale-110 transition-transform duration-200"
               />
             )}
           </button>
@@ -73,6 +91,18 @@ const Header: React.FC = () => {
                 {item.name}
               </NavLink>
             ))}
+
+            {/* Theme Toggle Button */}
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+            >
+              {theme === "light" ? (
+                <Moon size={20} className="text-gray-700" />
+              ) : (
+                <Sun size={20} className="text-yellow-400" />
+              )}
+            </button>
           </nav>
         </div>
       </header>
@@ -111,6 +141,18 @@ const Header: React.FC = () => {
                 {item.name}
               </NavLink>
             ))}
+
+            {/* Theme Toggle for Mobile */}
+            <button
+              onClick={toggleTheme}
+              className="p-2 mt-6 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+            >
+              {theme === "light" ? (
+                <Moon size={24} className="text-gray-700" />
+              ) : (
+                <Sun size={24} className="text-yellow-400" />
+              )}
+            </button>
           </div>
         </div>
       )}

@@ -77,7 +77,7 @@ const ProjectsSection: React.FC = () => {
   return (
     <section
       id="projects"
-      className="bg-secondary min-h-screen transition-colors duration-300"
+      className="bg-[#fcfbf8] dark:bg-secondary min-h-screen transition-colors duration-300"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -85,14 +85,14 @@ const ProjectsSection: React.FC = () => {
 
         {/* Filter Buttons */}
         <div className="flex justify-center">
-          <div className="inline-flex bg-gray-800 rounded-xl p-1">
+          <div className="inline-flex bg-gray-200 dark:bg-gray-800 rounded-xl p-1">
             {/* All */}
             <button
               onClick={() => setFilter("all")}
               className={`px-6 py-3 rounded-lg font-semibold transition-all duration-200 ${
                 filter === "all"
                   ? "bg-primary text-white shadow-lg"
-                  : "text-gray-300 hover:text-white"
+                  : "text-gray-700 dark:text-gray-300 hover:text-primary"
               }`}
             >
               All
@@ -104,7 +104,7 @@ const ProjectsSection: React.FC = () => {
               className={`px-6 py-3 rounded-lg font-semibold transition-all duration-200 ${
                 filter === "residential"
                   ? "bg-primary text-white shadow-lg"
-                  : "text-gray-300 hover:text-white"
+                  : "text-gray-700 dark:text-gray-300 hover:text-primary"
               }`}
             >
               Residential
@@ -116,7 +116,7 @@ const ProjectsSection: React.FC = () => {
               className={`px-6 py-3 rounded-lg font-semibold transition-all duration-200 ${
                 filter === "commercial"
                   ? "bg-primary text-white shadow-lg"
-                  : "text-gray-300 hover:text-white"
+                  : "text-gray-700 dark:text-gray-300 hover:text-primary"
               }`}
             >
               Commercial
@@ -129,7 +129,7 @@ const ProjectsSection: React.FC = () => {
           {filteredProjects.map((project) => (
             <div
               key={project.id}
-              className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
+              className="group relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 bg-gray-50 dark:bg-gray-900"
               onMouseEnter={() => setHoveredProject(project.id)}
               onMouseLeave={() => setHoveredProject(null)}
             >
