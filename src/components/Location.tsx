@@ -5,9 +5,7 @@ import {
   Phone,
   Facebook,
   Instagram,
-  Linkedin,
-  Twitter,
-} from "lucide-react";
+  Linkedin} from "lucide-react";
 
 const Location: React.FC = () => {
   return (
@@ -46,17 +44,17 @@ const Location: React.FC = () => {
             <p className="flex items-center gap-3 justify-center text-gray-700 dark:text-gray-300">
               <MapPin className="w-5 h-5 text-blue-600 dark:text-blue-400" />
               <span className="font-semibold">Location:</span>
-              <span className="text-red-600 dark:text-red-400">
+              <span className="text-primary dark:text-primary">
                 811 Gold Crest, 8th Floor, L T Road, Borivali West, Mumbai.
               </span>
             </p>
 
             <p className="flex items-center gap-3 justify-center text-gray-700 dark:text-gray-300">
-              <Mail className="w-5 h-5 text-red-600 dark:text-red-400" />
+              <Mail className="w-5 h-5 text-primary dark:text-primary" />
               <span className="font-semibold">Email:</span>
               <a
                 href="mailto:sales@axistechinfra.com"
-                className="text-red-600 dark:text-red-400 hover:underline"
+                className="text-primary dark:text-primary hover:underline"
               >
                 sales@axistechinfra.com
               </a>
@@ -67,7 +65,7 @@ const Location: React.FC = () => {
               <span className="font-semibold">Phone:</span>
               <a
                 href="tel:+918850196164"
-                className="text-red-600 dark:text-red-400 hover:underline"
+                className="text-primary dark:text-primary hover:underline"
               >
                 +91 88501 96164
               </a>
@@ -86,14 +84,14 @@ const Location: React.FC = () => {
           {/* Social Links */}
           <div className="flex gap-6 mt-4 justify-center">
             {[
-              { icon: Facebook, color: "hover:text-blue-600" },
-              { icon: Instagram, color: "hover:text-pink-500" },
-              { icon: Linkedin, color: "hover:text-blue-700" },
-              { icon: Twitter, color: "hover:text-sky-500" },
-            ].map(({ icon: Icon, color }, i) => (
+              { icon: Facebook, color: "hover:text-blue-600", link:"https://www.facebook.com/share/1E2Vvcy7Nv/" },
+              { icon: Instagram, color: "hover:text-pink-500", link: "https://www.instagram.com/axisol.solar?igsh=MWM3aGRzNmhiaDM0OA=="},
+              { icon: Linkedin, color: "hover:text-blue-700", link: "https://www.linkedin.com/in/axisol-solar-101402318/"},
+            ].map(({ icon: Icon, color, link }, i) => (
               <a
                 key={i}
-                href="#"
+                href={link}
+                target="_blank"
                 className={`text-gray-600 dark:text-gray-400 transition-transform duration-300 transform hover:-translate-y-2 ${color}`}
               >
                 <Icon className="w-6 h-6" />

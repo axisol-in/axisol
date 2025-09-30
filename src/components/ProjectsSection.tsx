@@ -97,17 +97,17 @@ const ProjectsSection: React.FC = () => {
                           <Zap size={14} />
                           <span>Capacity: {project.capacity}</span>
                         </div>
-                        <div className="flex items-center space-x-2">
+                        {/* <div className="flex items-center space-x-2">
                           <Calendar size={14} />
                           <span>{project.completion}</span>
-                        </div>
+                        </div> */}
                       </div>
 
-                      <div className="bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg p-3">
+                      {/* <div className="bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg p-3">
                         <p className="font-semibold text-center">
                           Monthly Savings: {project.savings}
                         </p>
-                      </div>
+                      </div> */}
                     </div>
                   )}
                 </div>
