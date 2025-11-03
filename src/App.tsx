@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HelmetProvider } from "react-helmet-async";
 
 import Header from "./components/Header";
 import Chatbot from "./components/Chatbot";
@@ -51,9 +52,11 @@ const AppContent: React.FC = () => {
 
 function App() {
   return (
-    <ThemeProvider>
-      <AppContent />
-    </ThemeProvider>
+    <HelmetProvider>
+      <ThemeProvider>
+        <AppContent />
+      </ThemeProvider>
+    </HelmetProvider>
   );
 }
 

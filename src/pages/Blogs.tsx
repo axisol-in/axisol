@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Calendar, Clock } from "lucide-react";
+import SEO from "../components/SEO";
 import Title from "../components/ui/Title";
 import { fetchBlog, createPostsQuery } from "./utils";
 import { Post } from "./types";
@@ -8,6 +9,13 @@ import { Link } from "react-router-dom";
 const BlogsPage: React.FC = () => {
   const [posts, setPosts] = useState<Post[] | null>(null);
   const [filter, setFilter] = useState("All Posts");
+
+  const blogsSchema = {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    "name": "Axisol Solar Energy Blog",
+    "description": "Latest insights, tips, and news about solar energy, renewable energy, and green technology in India",
+  };
 
   useEffect(() => {
     async function loadPosts() {
@@ -49,10 +57,19 @@ const BlogsPage: React.FC = () => {
   );
 
   return (
-    <section
-      id="blogs"
-      className="bg-[#fcfbf8] dark:bg-secondary transition-colors duration-300"
-    >
+    <>
+      <SEO
+        title="Solar Energy Blog - Latest News, Tips & Insights | Axisol India"
+        description="Read Axisol's expert articles on solar energy, renewable power, government schemes, installation tips, and green technology trends in India. Stay updated with the latest in sustainable energy."
+        keywords="solar energy blog, renewable energy news, solar tips India, solar panel guide, green energy articles, solar installation tips, solar government schemes, clean energy blog"
+        canonical="https://www.axisol.in/blogs"
+        ogUrl="https://www.axisol.in/blogs"
+        schema={blogsSchema}
+      />
+      <section
+        id="blogs"
+        className="bg-[#fcfbf8] dark:bg-secondary transition-colors duration-300"
+      >
       <Title content="Latest Articles" />
 
       {/* Featured Blog Card */}
@@ -166,6 +183,7 @@ const BlogsPage: React.FC = () => {
         </div>
       </div>
     </section>
+    </>
   );
 };
 

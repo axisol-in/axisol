@@ -10,13 +10,40 @@ import {
   Gauge,
 } from "lucide-react";
 
+import SEO from "../components/SEO";
 import Title from "../components/ui/Title";
 import AboutVideo from "../assets/videos/about-video.mp4";
 
+import BrochurePDF from "../assets/about/brochure.pdf";
+import Brochure1 from "../assets/about/Society-Brochure-01.png";
+import Brochure2 from "../assets/about/Society-Brochure-02.png";
+import Brochure3 from "../assets/about/Society-Brochure-03.png";
+
 const About: React.FC = () => {
+  const aboutSchema = {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "name": "About Axisol - Leading Solar EPC Company in India",
+    "description": "Learn about Axisol's journey in providing world-class solar rooftop EPC solutions in India with best global practices.",
+    "mainEntity": {
+      "@type": "Organization",
+      "name": "Axisol",
+      "description": "Premier solar energy solutions provider in India",
+      "foundingDate": "2010",
+      "areaServed": "India"
+    }
+  };
 
   return (
     <div className="min-h-screen bg-[#fcfbf8] dark:bg-black text-gray-900 dark:text-white font-inter">
+      <SEO
+        title="About Axisol - Leading Solar EPC Company & Green Energy Solutions Provider in India"
+        description="Discover Axisol's journey in delivering world-class rooftop solar EPC solutions across India. Expert team, global partnerships, and comprehensive solar energy services. Learn why we're India's trusted solar partner."
+        keywords="solar EPC company India, rooftop solar solutions, solar energy services, about Axisol, solar installation experts, renewable energy company India, solar EPC services, commercial solar provider"
+        canonical="https://www.axisol.in/about"
+        ogUrl="https://www.axisol.in/about"
+        schema={aboutSchema}
+      />
       <main>
         {/* Hero Section */}
         <section
@@ -35,7 +62,7 @@ const About: React.FC = () => {
               </p>
               <div className="flex gap-4 justify-center">
                 <a
-                  href="/brochure.pdf"
+                  href={BrochurePDF}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-block px-6 py-3 font-medium bg-primary rounded-full text-white hover:scale-110 transition-transform border-2 border-transparent cursor-pointer"
@@ -103,9 +130,9 @@ const About: React.FC = () => {
         {/* Brochure Section */}
         <section className="py-16 px-10 sm:px-5">
           <div className="flex flex-wrap justify-center gap-4">
-            <img src="/Society-Brochure-17.png" className="h-[96] md:h-[600px] rounded-lg shadow-lg" alt="Society Brochure 17" />
-            <img src="/Society-Brochure-02.png" className="h-[96] md:h-[600px] rounded-lg shadow-lg" alt="Society Brochure 02" />
-            <img src="/Society-Brochure-03.png" className="h-[96] md:h-[600px] rounded-lg shadow-lg" alt="Society Brochure 03" />
+            <img src={Brochure1} className="h-[96] md:h-[600px] rounded-lg shadow-lg" alt="Society Brochure 01" />
+            <img src={Brochure2} className="h-[96] md:h-[600px] rounded-lg shadow-lg" alt="Society Brochure 02" />
+            <img src={Brochure3} className="h-[96] md:h-[600px] rounded-lg shadow-lg" alt="Society Brochure 03" />
           </div>
         </section>
       </main>
