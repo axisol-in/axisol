@@ -41,11 +41,11 @@ const ContactSection: React.FC = () => {
   const onSubmit = (data: ContactFormValues) => {
     emailjs
       .send(
-        "service_awozojj",
+        "service_ac6w0d5",
         "template_8vm1yxr",
         {
           content: `Name: ${data.name}\nNumber: ${data.phone}\nEmail: ${data.email}\nLocation: ${data.location}\nMonthly Bill: ₹${data.bill}\nMessage: ${data.message || "N/A"}`,
-          email: data.email,
+          email: "sales@axistechinfra.com",
           name: data.name,
         },
         { publicKey: "84e7GcE9bJdWR-aMZ" }
