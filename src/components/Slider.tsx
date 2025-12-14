@@ -69,11 +69,11 @@ const Slider: React.FC = () => {
                 {/* Dark Overlay */}
                 <div className="absolute inset-0 bg-black/40" />
                 {/* Text */}
-                <div className="w-auto mb-10 px-5 relative z-10">
-                  <h1 className="text-white text-xl md:text-4xl mb-2 text-left">
+                <div className="w-auto mb-32 md:mb-10 px-5 relative z-10">
+                  <h1 className="text-white text-3xl md:text-4xl mb-2 text-left">
                     {slide.title}
                   </h1>
-                  <p className="text-gray-300 text-sm md:text-xl leading-relaxed text-left">
+                  <p className="text-gray-300 text-md md:text-xl leading-relaxed text-left">
                     {slide.text}
                   </p>
                 </div>

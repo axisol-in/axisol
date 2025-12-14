@@ -13,6 +13,10 @@
   scrollbar-width: none;
 }
 
+html{
+  background-color: black;
+}
+
 body {
   scrollbar-width: 0;
   -ms-overflow-style: none;

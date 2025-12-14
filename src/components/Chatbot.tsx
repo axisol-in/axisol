@@ -21,7 +21,7 @@ const quickResponses = [
   "What is the installation process",
   "How much can I save monthly",
   "Which areas do you serve",
-  "Warranty",
+  "About Warranty",
 ];
 
 // Message type
@@ -146,7 +146,7 @@ const Chatbot: React.FC = () => {
 
       {/* Chat Window */}
       {isOpen && (
-        <div className="fixed bottom-6 right-6 w-96 h-[32rem] bg-gray-900 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 z-40 flex flex-col overflow-hidden">
+        <div className="fixed bottom-6 right-6 w-80 md:w-96 h-[32rem] bg-gray-900 rounded-2xl shadow-2xl border border-gray-200 dark:border-gray-700 z-40 flex flex-col overflow-hidden">
           {/* Header */}
           <div className="bg-primary text-white p-4 flex items-center justify-between">
             <div className="flex items-center space-x-3">
@@ -177,12 +177,12 @@ const Chatbot: React.FC = () => {
             </div>
 
             {/* Quick responses */}
-            <div className="flex flex-wrap gap-2 mt-2">
+            <div className="w-auto flex gap-2 mt-2 overflow-x-scroll">
               {quickResponses.map((qr, idx) => (
                 <button
                   key={idx}
                   onClick={() => handleSendMessage(qr)}
-                  className="px-3 py-1 bg-gray-700 text-gray-900 text-white rounded-full text-xs hover:bg-gray-300 dark:hover:bg-gray-600 transition"
+                  className="whitespace-nowrap h-10 px-3 py-1 bg-gray-700 text-white rounded-full text-xs hover:bg-gray-300 dark:hover:bg-gray-600 transition"
                 >
                   {qr}
                 </button>

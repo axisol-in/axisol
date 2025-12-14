@@ -145,7 +145,7 @@ const Header: React.FC = () => {
             {/* Theme Toggle for Mobile */}
             <button
               onClick={toggleTheme}
-              className="p-2 mt-6 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+              className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition hidden md:block"
             >
               {theme === "light" ? (
                 <Moon size={24} className="text-gray-700" />
