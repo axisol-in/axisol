@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Menu, X, Sun, Moon } from "lucide-react";
 import { NavLink } from "react-router-dom";
-import logo from "../assets/logos/logo.png";
+// import logo from "../assets/logos/logo.png";
 
 const Header: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -71,7 +71,7 @@ const Header: React.FC = () => {
           {/* Logo */}
           <NavLink to="/">
             <div className="flex items-center space-x-2">
-              <img className="h-7" src={logo} />
+              <img className="h-7" src={'/logos/logo.png'} />
               <span className="text-2xl font-bold text-primary">AXISOL</span>
             </div>
           </NavLink>

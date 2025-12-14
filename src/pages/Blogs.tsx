@@ -26,7 +26,14 @@ const BlogsPage: React.FC = () => {
   }, []);
 
   if (!posts) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-[#fcfbf8] dark:bg-secondary transition-colors duration-300">
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-16 h-16 border-4 border-gray-300 dark:border-gray-600 border-t-primary dark:border-t-primary rounded-full animate-spin"></div>
+          <p className="text-gray-600 dark:text-gray-300 font-medium">Loading blogs...</p>
+        </div>
+      </div>
+    );
   }
 
   const blogPosts = posts.map((p) => ({
@@ -136,7 +143,7 @@ const BlogsPage: React.FC = () => {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredBlogs.map((post) => (
             <Link key={post.id} to={`/blog/${post.id}`}>
-              <article className="group bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 dark:border-gray-700 overflow-hidden">
+              <article className="group bg-white dark:bg-gray-800 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 dark:border-gray-700 overflow-hidden flex flex-col h-full">
                 <div className="relative">
                   <img
                     src={post.image}
@@ -149,14 +156,14 @@ const BlogsPage: React.FC = () => {
                     </span>
                   </div>
                 </div>
-                <div className="p-6">
+                <div className="p-6 flex flex-col flex-grow">
                   <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 leading-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300">
                     {post.title}
                   </h3>
-                  <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
+                  <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed flex-grow">
                     {post.excerpt}
                   </p>
-                  <div className="flex items-center justify-between">
+                  <div className="flex items-center justify-between mt-auto">
                     <div className="flex items-center space-x-4 text-sm text-gray-500 dark:text-gray-400">
                       <div className="flex items-center space-x-1">
                         <Calendar size={14} />

@@ -86,7 +86,14 @@ const BlogPostPage: React.FC = () => {
   const navigate = useNavigate();
 
   if (!post) {
-    return <div>Loading...</div>;
+    return (
+      <div className="flex items-center justify-center min-h-screen bg-[#fcfbf8] dark:bg-secondary transition-colors duration-300">
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-16 h-16 border-4 border-gray-300 dark:border-gray-600 border-t-primary dark:border-t-primary rounded-full animate-spin"></div>
+          <p className="text-gray-600 dark:text-gray-300 font-medium">Loading blog post...</p>
+        </div>
+      </div>
+    );
   }
 
   console.log(id);
@@ -149,7 +156,7 @@ const BlogPostPage: React.FC = () => {
       </div>
 
       {/* Navigation Header */}
-      <div className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800">
+      <div className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm border-b border-gray-200 dark:border-gray-800 mt-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
           <div className="flex items-center justify-between">
             <button

@@ -17,7 +17,7 @@ const Location: React.FC = () => {
           {/* Logo + Title */}
           <div className="flex items-center gap-3 mb-4">
             <img
-              src="../src/assets/logos/logo.png"
+              src="/logos/logo_sqr.png"
               className="h-10"
               alt="Axisol Logo"
             />
